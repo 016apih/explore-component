@@ -18,6 +18,7 @@ const MainPage = memo(() => {
          <SelectComponent
             options={options}
             onChange={setPageActive}
+            value={pageActive}
          />
       </div>
       {pageActive?.value === "form" ?
