@@ -5,18 +5,27 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import { 
+   agGridList,
    CheckboxWithFirstColumn,
-   CheckboxWithCustomColumn
-} from './index.js'
-// const { CheckboxWithFirstColumn} = React.lazy(() => import('./index.js'));
-
-const agGridList = [
-   { key: "checkbox1", name: "CheckboxWithFirstColumn", label: "Checkbox 1" },
-   { key: "checkbox2", name: "CheckboxWithCustomeColumn", label: "Checkbox 1" },
-]
+   CheckboxWithCustomColumn,
+   ColDefWithRefData,
+} from './index.js';
 
 const AgGridPage = memo(() => {
-   const [ tableActive, setTableActive ] = useState(agGridList[0])
+
+   const [ tableActive, setTableActive ] = useState(agGridList[0]);
+
+   const componetActive = (key) => {
+      if(key === "checkbox1")
+         return <CheckboxWithFirstColumn />;
+      else if(key === "checkbox2")
+         return <CheckboxWithCustomColumn />
+      else if(key === "col-properti-1")
+         return <ColDefWithRefData />
+      else
+         return <h5>jangan lupa import Componentnya</h5>
+   }
+
    return (
       <Suspense fallback={<div>Loading...</div>}>
          <div className="row mx-2">
@@ -33,14 +42,7 @@ const AgGridPage = memo(() => {
             )}
          </div>
          <div className="row mx-2">
-            {tableActive.key === "checkbox1" ? 
-               <CheckboxWithFirstColumn />
-            : tableActive.key === "checkbox2" ?
-               <CheckboxWithCustomColumn />
-            : 
-               ""
-
-            }
+            { componetActive(tableActive.key) }
          </div>
       </Suspense>
    )
