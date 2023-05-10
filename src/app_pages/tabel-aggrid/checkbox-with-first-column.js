@@ -60,7 +60,7 @@ class CheckboxWithFirstColumn extends React.PureComponent {
                rowSelection={this.state.rowSelection}
                onGridReady={this.onGridReady}
                rowData={this.state.rowData}
-            ></AgGridReact>
+            />
          </div>
       )
    }
