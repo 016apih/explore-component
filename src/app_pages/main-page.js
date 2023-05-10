@@ -12,7 +12,7 @@ const options = [
 ];
 
 const MainPage = memo(() => {
-   const [ pageActive, setPageActive ] = useState(null)
+   const [ pageActive, setPageActive ] = useState(options[1]);
    return (<>
       <div className="w-50 m-3">
          <SelectComponent
