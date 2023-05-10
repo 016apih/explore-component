@@ -49,7 +49,6 @@ class CheckboxWithFirstColumn extends React.PureComponent {
    }
    
    render() {
-      console.log("aaa", this.state.rowData)
       return (
          <div className="ag-theme-alpine" 
             style={{width: 900, height: 500}} // wajib ada supaya muncul
