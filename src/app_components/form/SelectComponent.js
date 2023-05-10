@@ -1,21 +1,19 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import Select from 'react-select';
 
-const options = [
-   { value: 'chocolate', label: 'Chocolate' },
-   { value: 'strawberry', label: 'Strawberry' },
-   { value: 'vanilla', label: 'Vanilla' },
-];
-
-const SelectComponent = memo(() => {
-   const [selectedOption, setSelectedOption] = useState(null);
-
+const SelectComponent = memo(({ 
+   options=[], 
+   onChange=null, 
+   value=null,
+   ...props
+}) => {
    return (<>
       <div>SelectComponent</div>
       <Select
-         defaultValue={selectedOption}
-         onChange={setSelectedOption}
+         defaultValue={value}
+         onChange={onChange}
          options={options}
+         {...props}
       />
    </>)
 })
