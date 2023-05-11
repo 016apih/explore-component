@@ -36,9 +36,13 @@ forthPlot.stepLine(cscoDataTable.mapAs({'value': 4})).name('CSCO').tooltip(null)
 chart.scroller().area(msftDataTable.mapAs({'value': 4}));
 chart.selectRange('2005-01-03', '2005-11-20');
 
+var stage = anychart.graphics.create("simple-stock");
+chart.container(stage);
+
 const StockChartSample = memo(() => {
    return (
       <AnyChart
+         id="simple-stock"
          width={800}
          height={600}
          instance={chart}

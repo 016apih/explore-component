@@ -3,26 +3,18 @@ import anychart from 'anychart';
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 
-const SimpleAnyChartWithHooks = memo(() => {
-
-   return (
-      <AnyChart
-         width={800}
-         height={600}
-         // instance={chart}
-         title="Stock Demo"
-      />
-   )
-})
 class SimpleAnychartWithInstance extends Component {
    render() {
+      let stage = anychart.graphics.create("simple-anychart");
       let chart = anychart.column([3,1,2]);
       chart.title("My Chart Title");
       chart.legend(true);
+      chart.container(stage)
+      chart.draw();
 
       return (
          <div>
-            <AnyChart instance={chart} />
+            <AnyChart instance={chart} id="simple-anychart" />
          </div>
       );
    }
@@ -45,4 +37,4 @@ class SimpleAnychart extends Component {
 }
 
 export default SimpleAnychart;
-export { SimpleAnychartWithInstance, SimpleAnyChartWithHooks };
+export { SimpleAnychartWithInstance };

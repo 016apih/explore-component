@@ -1,12 +1,14 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 
 import { get_index_stream_data } from './data';
 
-let chart = anychart.stock();
+let myData = get_index_stream_data();
+let chart = anychart.stock(); // create instance stock chart
+
 let indexchart = anychart.data.table();
-indexchart.addData(get_index_stream_data());
+indexchart.addData(myData);
 
 let mapData = indexchart.mapAs({x: 0, value: 1}); // x: time, value: price
 let seriesRaw = chart.plot(0);
@@ -41,16 +43,24 @@ title.hAlign("center");
 
 chart.scroller(true);
 chart.scroller().enabled(false);
-chart.container('container').draw();
+
+
 
 const IndexStreamChart = memo(() => {
+
+   useEffect(() => {
+      let stage = anychart.graphics.create("index-container"); // create graphic chart by idname
+      chart.container(stage).draw();
+   }, [])
+
    return (
+   <div style={{ height: '700px' }}>
       <AnyChart 
          instance={chart} 
-         id="container" 
+         id="index-container" 
          title="TEST Data" 
-         height={600}
       />
+   </div>
    )
 })
 
