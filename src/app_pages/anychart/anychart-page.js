@@ -3,6 +3,7 @@ import { Form } from 'react-bootstrap';
 
 import { 
    anyChartList,
+   IndexStreamChart,
    SimpleAnychart,
    SimpleAnyChartWithHooks,
    SimpleAnychartWithInstance,
@@ -21,11 +22,8 @@ const AnyChartPage = memo(() => {
          return <SimpleDasboard />
       else if(key === "simple-stock-chart")
          return <StockChartSample />
-      // return <SimpleAnychart />;
-      // else if(key === "checkbox2")
-      //    return <CheckboxWithCustomColumn />
-      // else if(key === "col-properti-1")
-      //    return <ColDefWithRefData />
+      else if(key === "index-stream-chart")
+         return <IndexStreamChart />
       else
          return <h5>jangan lupa import Componentnya</h5>
    }
