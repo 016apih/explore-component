@@ -5,9 +5,9 @@ import {
    anyChartList,
    IndexStreamChart,
    SimpleAnychart,
-   SimpleAnyChartWithHooks,
    SimpleAnychartWithInstance,
    SimpleDasboard,
+   SimpleStream,
    StockChartSample
 } from './index.js';
 
@@ -17,11 +17,13 @@ const AnyChartPage = memo(() => {
 
    const componetActive = (key) => {
       if(key === "simple")
-         return <SimpleAnyChartWithHooks />;
+         return <SimpleAnychartWithInstance />;
       else if(key === "simple-dasboard")
          return <SimpleDasboard />
       else if(key === "simple-stock-chart")
          return <StockChartSample />
+      else if(key === "simple-stream")
+         <SimpleStream />
       else if(key === "index-stream-chart")
          return <IndexStreamChart />
       else
