@@ -3,7 +3,11 @@ import { Form } from 'react-bootstrap';
 
 import { 
    anyChartList,
-   SimpleAnychart
+   SimpleAnychart,
+   SimpleAnyChartWithHooks,
+   SimpleAnychartWithInstance,
+   SimpleDasboard,
+   StockChartSample
 } from './index.js';
 
 const AnyChartPage = memo(() => {
@@ -12,7 +16,12 @@ const AnyChartPage = memo(() => {
 
    const componetActive = (key) => {
       if(key === "simple")
-         return <SimpleAnychart />;
+         return <SimpleAnyChartWithHooks />;
+      else if(key === "simple-dasboard")
+         return <SimpleDasboard />
+      else if(key === "simple-stock-chart")
+         return <StockChartSample />
+      // return <SimpleAnychart />;
       // else if(key === "checkbox2")
       //    return <CheckboxWithCustomColumn />
       // else if(key === "col-properti-1")
