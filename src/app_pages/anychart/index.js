@@ -4,7 +4,7 @@ export { default as SimpleDasboard } from './simple-dasboard.js';
 export { default as StockChartSample } from './stock-chart-simple.js'
 export { default as IndexStreamChart } from './index-stream-chart.js'
 export { default as SimpleStream } from './simple-stream.js';
-
+export { default as StockChartPersistent } from './stock-chart.js'
 
 export const anyChartList = [
    { 
@@ -18,5 +18,6 @@ export const anyChartList = [
    {  key: "simple-stock-chart", name: "StockChartSample" },
    {  key: "simple-stream", name: "SimpleStream" },
    {  key: "index-stream-chart", name: "IndexStreamChart" },
+   {  key: "stock-chart", name: "StockChartPersistent" },
 ]
 

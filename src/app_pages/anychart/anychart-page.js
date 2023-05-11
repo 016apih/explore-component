@@ -1,6 +1,8 @@
 import React, { memo, useState, Suspense } from 'react';
 import { Form } from 'react-bootstrap';
 
+import './styles.css';
+
 import { 
    anyChartList,
    IndexStreamChart,
@@ -8,6 +10,7 @@ import {
    SimpleAnychartWithInstance,
    SimpleDasboard,
    SimpleStream,
+   StockChartPersistent,
    StockChartSample
 } from './index.js';
 
@@ -22,10 +25,12 @@ const AnyChartPage = memo(() => {
          return <SimpleDasboard />
       else if(key === "simple-stock-chart")
          return <StockChartSample />
-      else if(key === "simple-stream")
-         <SimpleStream />
+      // else if(key === "simple-stream")
+      //    <SimpleStream />
       else if(key === "index-stream-chart")
          return <IndexStreamChart />
+      else if(key === "stock-chart")
+         return <StockChartPersistent />
       else
          return <h5>jangan lupa import Componentnya</h5>
    }
