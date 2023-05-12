@@ -5,7 +5,7 @@ html {
 #index-container{
    height: 100%;
 }
-#stock-chart-container {
-   height: 600px;
+#stock-chart-container, #product-comparison-chart {
+   height: 500px;
    min-height: 600px; 
 }

@@ -6,10 +6,11 @@ import './styles.css';
 import { 
    anyChartList,
    IndexStreamChart,
-   SimpleAnychart,
+   ProductComparison,
+   // SimpleAnychart,
    SimpleAnychartWithInstance,
    SimpleDasboard,
-   SimpleStream,
+   // SimpleStream,
    StockChartPersistent,
    StockChartSample
 } from './index.js';
@@ -31,6 +32,8 @@ const AnyChartPage = memo(() => {
          return <IndexStreamChart />
       else if(key === "stock-chart")
          return <StockChartPersistent />
+      else if(key === "product-comparison")
+         return <ProductComparison />
       else
          return <h5>jangan lupa import Componentnya</h5>
    }
