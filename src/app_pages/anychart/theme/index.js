@@ -16,16 +16,17 @@ import Sea from "./sea";
 import Wines from "./wines";
 
 export default [
-   {value: 'darkEarth', label: 'Dark Earth', theme: DarkEarth},
-   {value: 'lightEarth', label: 'Light Earth', theme: LightEarth},
-   {value: 'darktBlue', label: 'Dark Blue', theme: DarkBlue},
+   {value: 'default', label: 'Default Theme', theme: null},
    {value: 'lightBlue', label: 'Light Blue', theme: LightBlue},
-   {value: 'darkGlamour', label: 'Dark Glamour', theme: DarkGlamour},
+   {value: 'darktBlue', label: 'Dark Blue', theme: DarkBlue},
+   {value: 'lightEarth', label: 'Light Earth', theme: LightEarth},
+   {value: 'darkEarth', label: 'Dark Earth', theme: DarkEarth},
    {value: 'lightGlamour', label: 'Light Glamour', theme: LightGlamour},
-   {value: 'darkProvence', label: 'Dark Provence', theme: DarkProvence},
+   {value: 'darkGlamour', label: 'Dark Glamour', theme: DarkGlamour},
    {value: 'lightProvence', label: 'Light Provence', theme: LightProvence},
-   {value: 'darkTurquoise', label: 'Dark Turquoise', theme: DarkTurquoise},
+   {value: 'darkProvence', label: 'Dark Provence', theme: DarkProvence},
    {value: 'lightTurquoise', label: 'Light Turquoise', theme: LightTurquoise},
+   {value: 'darkTurquoise', label: 'Dark Turquoise', theme: DarkTurquoise},
    {value: 'coffee', label: 'Coffee', theme: Coffee},
    {value: 'monochrome', label: 'Monochrome', theme: Monochrome},
    {value: 'morning', label: 'Morning', theme: Morning},

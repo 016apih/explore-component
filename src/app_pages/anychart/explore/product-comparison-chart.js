@@ -9,7 +9,7 @@ import chartThemeList from '../theme';
 // default constanta chart
 const defData = [[]]; // array of array
 const defCode = [{saham: "Series"}];  // array of object
-const defTheme = chartThemeList[0]
+const defTheme = chartThemeList[0];
 
 const ProductComparison = memo(() => {
    const [chartData, setChartData] = useState(defData); 
