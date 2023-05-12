@@ -158,6 +158,7 @@ const ProductComparison = memo(() => {
          <AnyChart 
             instance={chart}
             id="product-comparison-chart"
+            height={500}
          />
    </>)
 })

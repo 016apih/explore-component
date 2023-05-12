@@ -2,6 +2,7 @@ import React, { memo, useState, Suspense } from 'react';
 import { Form } from 'react-bootstrap';
 
 import { 
+   AnalyticStockChart,
    anyChartList,
    IndexStreamChart,
    ProductComparison,
@@ -37,6 +38,8 @@ const AnyChartPage = memo(() => {
          return <StockChartPersistent />
       else if(key === "product-comparison")
          return <ProductComparison />
+      else if(key === "analytic-stock-chart")
+         return <AnalyticStockChart />
       else
          return <h5>jangan lupa import Componentnya</h5>
    }

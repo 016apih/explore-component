@@ -5,3 +5,4 @@ export { default as get_orcl_daily_short_data} from './orcl-daily-short';
 export { default as get_index_stream_data } from './index-stream-chart';
 export { default as get_stock_chart } from './stock-chart.js';
 export { default as get_product_comparison, get_product_comparison1, get_code_product } from './product-comparison.js';
+export { default as get_analytic_stock_chart } from './analytic-stock-chart.js';

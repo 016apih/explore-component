@@ -7,6 +7,7 @@ export { default as StockChartSample } from './sample/stock-chart-simple.js'
 export { default as IndexStreamChart } from './explore/index-stream-chart.js';
 export { default as StockChartPersistent } from './explore/stock-chart.js';
 export { default as ProductComparison } from './explore/product-comparison-chart.js';
+export { default as AnalyticStockChart } from './explore/analytic-stock-chart.js';
 
 export const anyChartList = [
    { key: "simple", name: "SimpleAnychart" },
@@ -17,6 +18,7 @@ export const anyChartList = [
    {  key: "index-stream-chart", name: "IndexStreamChart" },
    {  key: "stock-chart", name: "StockChartPersistent" },
    {  key: "product-comparison", name: "ProductComparison" },
+   {  key: "analytic-stock-chart", name: "AnalyticStockChart" },
 
 ]
 
