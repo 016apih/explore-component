@@ -1,11 +1,11 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_stock_chart } from './data';
 
 let chart = anychart.stock();
 let chartData = anychart.data.table();
-chartData.addData(get_stock_chart());
+chartData.addData(get_stock_chart(1)); // setdata
 
 // set chart padding, background
 chart.padding().right(60);
@@ -46,18 +46,29 @@ let rangeSelector = anychart.ui.rangeSelector(); // create range selector
 rangeSelector.render(chart); // init range selector
 
 const StockChartPersistent = memo(() => {
+   const [id, setId] = useState(1);
 
    useEffect(() => {
       let stage = anychart.graphics.create("stock-chart-container"); // create graphic chart by idname
       chart.container(stage).draw();
-   },[])
+   },[]);
 
-   return (
+   const setChartData = () => {
+      let nid = (id % 2) + 1;
+      anychart.data.set(get_stock_chart(nid));
+      setId(id + 1);
+   }
+
+   return (<>
+      {/* <div>
+         <button onClick={setChartData}>Set Chart Data</button>
+      </div> */}
       <AnyChart 
          instance={chart} 
          height={600}
          id="stock-chart-container"
       />
+   </>
    )
 })
 
