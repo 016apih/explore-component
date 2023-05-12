@@ -133,7 +133,6 @@ const ProductComparison = memo(() => {
       setCartCode(defCode);
       setCharTheme(defTheme);
    }
-   console.log(Object.keys(anychart.themes))
 
    return (<>
       <div className="row">
