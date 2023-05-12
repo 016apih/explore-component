@@ -6,7 +6,7 @@ import { get_msft_daily_short_data,
    get_orcl_daily_short_data,
    get_csco_daily_short_data,
    get_ibm_daily_short_data,
-} from './data';
+} from '../data';
 
 var chart = anychart.stock();
 

@@ -2,7 +2,7 @@ import React, { memo, useEffect } from 'react';
 import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 
-import { get_index_stream_data } from './data';
+import { get_index_stream_data } from '../data';
 
 let myData = get_index_stream_data();
 let chart = anychart.stock(); // create instance stock chart

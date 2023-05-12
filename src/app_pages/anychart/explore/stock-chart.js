@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
-import { get_stock_chart } from './data';
+import { get_stock_chart } from '../data';
 
 let chart = anychart.stock();
 let chartData = anychart.data.table();
