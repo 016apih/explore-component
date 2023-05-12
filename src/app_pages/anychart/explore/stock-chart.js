@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import anychart from 'anychart';
+import 'anychart/dist/css/anychart-ui.min.css'; // wajib ada untuk merapihkan tampilannya
+
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_stock_chart } from '../data';
 

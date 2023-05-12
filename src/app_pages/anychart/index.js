@@ -1,10 +1,11 @@
 export { default as AnyChartPage } from './anychart-page.js';
-export { default as SimpleAnychart, SimpleAnychartWithInstance } from './simple-anychart.js';
-export { default as SimpleDasboard } from './simple-dasboard.js';
-export { default as StockChartSample } from './stock-chart-simple.js'
-export { default as IndexStreamChart } from './index-stream-chart.js'
-export { default as SimpleStream } from './simple-stream.js';
-export { default as StockChartPersistent } from './stock-chart.js'
+export { default as SimpleAnychart, SimpleAnychartWithInstance } from './sample/simple-anychart.js';
+export { default as SimpleDasboard } from './sample/simple-dasboard.js';
+export { default as SimpleStream } from './sample/simple-stream.js';
+export { default as StockChartSample } from './sample/stock-chart-simple.js'
+
+export { default as IndexStreamChart } from './explore/index-stream-chart.js';
+export { default as StockChartPersistent } from './explore/stock-chart.js'
 
 export const anyChartList = [
    { 

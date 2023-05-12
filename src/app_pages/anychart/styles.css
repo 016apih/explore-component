@@ -9,10 +9,3 @@ html {
    height: 600px;
    min-height: 600px; 
 }
-#stock-chart-container> div > svg {
-   height: 90%;
-}
-
-/* #stock-chart-container> div > svg > g > g > g:first-child > path {
-   fill : grey!important;
-} */
