@@ -1,15 +1,32 @@
 import React, { memo, useEffect, useState } from 'react';
 import anychart from 'anychart';
-import 'anychart/dist/css/anychart-ui.min.css'; // wajib ada untuk merapihkan tampilannya
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_code_product, get_product_comparison } from '../data';
-import chartThemeList from '../theme';
 
 // default constanta chart
+const chartThemeList = [
+   { value: "defaultTheme", label: "Default Theme" },
+   { value: "lightEarth", label: "Light Earth" },
+   { value: "darkEarth", label: "Dark Earth" },
+   { value: "lightBlue", label: "Light Blue" },
+   { value: "darkBlue", label: "Dark Blue" },
+   { value: "lightGlamour", label: "Light Glamour" },
+   { value: "darkGlamour", label: "Dark Glamour" },
+   { value: "lightProvence", label: "Light Provence" },
+   { value: "darkProvence", label: "Dark Provence" },
+   { value: "lightTurquoise", label: "Light Turquoise" },
+   { value: "darkTurquoise", label: "Dark Turquoise"  },
+   { value: "coffee", label: "Coffee", theme: "Coffee" },
+   { value: "monochrome", label: "Monochrome"  },
+   { value: "morning", label: "Morning"  },
+   { value: "pastel", label: "Pastel"  },
+   { value: "sea", label: "Sea" },
+   { value: "wines", label: "Wines" },
+]
 const defData = [[]]; // array of array
 const defCode = [{saham: "Series"}];  // array of object
-const defTheme = chartThemeList[0];
+const defTheme = "defaultTheme";
 
 const ProductComparison = memo(() => {
    const [chartData, setChartData] = useState(defData); 
@@ -56,7 +73,7 @@ const ProductComparison = memo(() => {
 
    useEffect(() => {
       // set theme
-      anychart.theme(chartTheme.theme);
+      anychart.theme(anychart.themes[chartTheme]);
 
       // create dataset
       let datasetObj = {}, mapObj={}, chartObj={};
@@ -107,8 +124,8 @@ const ProductComparison = memo(() => {
    }
 
    const onSelectTheme = (val) => {
-      let newTheme = chartThemeList.find(d => d.value === val);
-      setCharTheme(newTheme)
+      anychart.theme(anychart.themes[val]);
+      setCharTheme(val)
    }
 
    const onResetData = () => {
@@ -116,6 +133,7 @@ const ProductComparison = memo(() => {
       setCartCode(defCode);
       setCharTheme(defTheme);
    }
+   console.log(Object.keys(anychart.themes))
 
    return (<>
       <div className="row">
@@ -125,7 +143,7 @@ const ProductComparison = memo(() => {
          <div className="col-auto">
             <select placeholder="Theme" 
                onChange={(e) => onSelectTheme(e.target.value)}
-               value={chartTheme.value}
+               value={chartTheme}
             >
                { chartThemeList.map((d, id) => (
                   <option key={"cht-theme"+id} value={d.value}>

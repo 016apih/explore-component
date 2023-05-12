@@ -1,8 +1,6 @@
 import React, { memo, useState, Suspense } from 'react';
 import { Form } from 'react-bootstrap';
 
-import './styles.css';
-
 import { 
    anyChartList,
    IndexStreamChart,
@@ -14,6 +12,11 @@ import {
    StockChartPersistent,
    StockChartSample
 } from './index.js';
+
+// styles
+import './styles.css';
+import '../../assets/chartTheme/';
+import 'anychart/dist/css/anychart-ui.min.css'; // wajib ada untuk merapihkan tampilannya
 
 const AnyChartPage = memo(() => {
 
