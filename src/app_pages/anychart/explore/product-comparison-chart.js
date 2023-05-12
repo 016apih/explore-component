@@ -3,27 +3,9 @@ import anychart from 'anychart';
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_code_product, get_product_comparison } from '../data';
+import { chartThemeList } from './variabel-chart';
 
 // default constanta chart
-const chartThemeList = [
-   { value: "defaultTheme", label: "Default Theme" },
-   { value: "lightEarth", label: "Light Earth" },
-   { value: "darkEarth", label: "Dark Earth" },
-   { value: "lightBlue", label: "Light Blue" },
-   { value: "darkBlue", label: "Dark Blue" },
-   { value: "lightGlamour", label: "Light Glamour" },
-   { value: "darkGlamour", label: "Dark Glamour" },
-   { value: "lightProvence", label: "Light Provence" },
-   { value: "darkProvence", label: "Dark Provence" },
-   { value: "lightTurquoise", label: "Light Turquoise" },
-   { value: "darkTurquoise", label: "Dark Turquoise"  },
-   { value: "coffee", label: "Coffee", theme: "Coffee" },
-   { value: "monochrome", label: "Monochrome"  },
-   { value: "morning", label: "Morning"  },
-   { value: "pastel", label: "Pastel"  },
-   { value: "sea", label: "Sea" },
-   { value: "wines", label: "Wines" },
-]
 const defData = [[]]; // array of array
 const defCode = [{saham: "Series"}];  // array of object
 const defTheme = "defaultTheme";

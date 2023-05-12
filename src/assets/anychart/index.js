@@ -1,3 +1,4 @@
+// theme
 export * from './coffee.min.js';
 export * from "./dark-earth.min.js";
 export * from "./coffee.min.js";
@@ -15,3 +16,7 @@ export * from "./monochrome.min.js";
 export * from "./pastel.min.js";
 export * from "./sea.min.js";
 export * from "./wines.min.js";
+
+// annotations
+// export * from './anychart-annotations.min.js';
+

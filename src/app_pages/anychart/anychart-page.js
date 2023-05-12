@@ -16,8 +16,8 @@ import {
 
 // styles
 import './styles.css';
-import '../../assets/chartTheme/';
 import 'anychart/dist/css/anychart-ui.min.css'; // wajib ada untuk merapihkan tampilannya
+import '../../assets/anychart';
 
 const AnyChartPage = memo(() => {
 
