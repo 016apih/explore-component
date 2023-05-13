@@ -1,7 +1,7 @@
 export const chartThemeList = [
    { value: "defaultTheme", label: "Default Theme" },
-   { value: "lightEarth", label: "Light Earth" },
    { value: "darkEarth", label: "Dark Earth" },
+   { value: "lightEarth", label: "Light Earth" },
    { value: "lightBlue", label: "Light Blue" },
    { value: "darkBlue", label: "Dark Blue" },
    { value: "lightGlamour", label: "Light Glamour" },
@@ -36,4 +36,23 @@ export const annotationList = [
    { value: "trend-channel", label: "Trend channel" },	
    { value: "triangle", label: "Triangle" },	
    { value: "vertical-line", label: "Vertical line" },
+];
+
+export const seriesTypeList = [
+   { value: "area", label: "Area Chart" },
+   { value: "candlestick", label: "Candlestick Chart" },
+   { value: "column", label: "Column Chart" },
+   { value: "jumpLine", label: "Jump Line Chart" },
+   { value: "line", label: "Line Chart" },
+   { value: "marker", label: "Marker Chart" },
+   { value: "ohlc", label: "OHLC Chart" },
+   { value: "rangeArea", label: "Range Area Chart" },
+   { value: "rangeColumn", label: "Range Column Chart" },
+   { value: "rangeSplineArea", label: "Range Spline Area Chart" },
+   { value: "rangeStepArea", label: "Range Step Area Chart" },
+   { value: "spline", label: "Spline Chart" },
+   { value: "splineArea", label: "Spline Area Chart" },
+   { value: "stepArea", label: "Step Area Chart" },
+   { value: "stepLine", label: "Step Line Chart" },
+   { value: "stick", label: "Stick Chart" },
 ]
