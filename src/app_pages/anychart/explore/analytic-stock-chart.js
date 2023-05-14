@@ -199,7 +199,7 @@ const AnalyticStockChart = memo(() => {
                )) }
             </select>
              {/* modal indicator settings */}
-            {/* <ModalIndex chart={chart} anychart={anychart} /> */}
+            <ModalIndex chart={chart} anychart={anychart} />
             <div className="modal fade show" id="indicatorSettingsModal" tabIndex="-1" role="dialog">
                <div className="modal-dialog" role="document">
                   <div className="modal-content">
