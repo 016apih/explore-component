@@ -20,3 +20,6 @@ export * from "./wines.min.js";
 // annotations
 // export * from './anychart-annotations.min.js';
 
+// indicator
+export * from './indicator.js';
+

@@ -5,6 +5,7 @@ import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_analytic_stock_chart } from '../data';
 import { chartThemeList, annotationList, seriesTypeList, indicatorList } from './variabel-chart';
 import { Modal } from 'bootstrap';
+import { indicators } from '../../../assets/anychart'
 import ModalIndex from './modal';
 
 // default constanta chart
@@ -25,6 +26,7 @@ const AnalyticStockChart = memo(() => {
    const [annotation, setAnnotation] = useState(defAnnotation);
    const [seriesType, setSeriesType] = useState(defSeries);
    const [indicatorChart, setIndicatorChart] = useState(defIndicator);
+   const [modalIndcator, setModalIndicator] = useState({});
    
    const chart = anychart.stock();
    
@@ -100,9 +102,57 @@ const AnalyticStockChart = memo(() => {
    };
 
    useEffect(() => {
-      setPlotAnnotation(annotation);
-      setTheme(chartTheme);
-   },[ arrData, chartTheme, annotation, seriesType ]);
+      // set theme      
+      anychart.theme(chartTheme);
+
+      // set annotation
+      if(annotation === "default"){
+         controller.removeAllAnnotations();
+      } else {
+         controller.startDrawing(annotation);
+      }
+
+      // set indicator
+      if(modalIndcator.indicator){
+         const plot = chart.plot(modalIndcator.indicator.plotIndex);
+         let settings = [mapData];
+         for (let key in modalIndcator.indicator) {
+            if (key !== 'overview' && key !== 'plotIndex') {
+               let val = modalIndcator.indicator[key];
+               console.log()
+               val = val == 'true' || val == 'false' ? val == 'true' : val;
+               settings.push(val);
+            }
+         }
+         if(indicatorChart === "psar"){
+            let { accelerationFactorMaximum, accelerationFactorStart, accelerationFactorincrement } = modalIndcator.indicator;
+            let indicator = plot.psar(mapData, accelerationFactorStart, accelerationFactorincrement, accelerationFactorMaximum).series();
+            indicator.fill("#2bccf3");
+            indicator.stroke("#2bccf3");
+
+            // set indicator settings
+            indicator.type('circle').size(1);
+            // adding extra Y axis to the right side
+            plot.yAxis(1).orientation('right');
+         } else if(indicatorChart == "sma"){
+            let { period_1, period_2, period_3 } = modalIndcator.indicator;
+            let sma20 = plot.sma(mapData, period_1).series();
+            sma20.name(`SMA(${period_1})`).stroke('#6745bf');
+
+            // create SMA indicator with period 20
+            let sma50 = plot.sma(mapData, period_2).series();
+            sma50.name(`SMA(${period_2})`).stroke('#bf549b');
+
+            let sma60 = plot.sma(mapData, period_3).series();
+            sma60.name(`SMA(${period_3})`).stroke('#6cb8c2');
+         } else {
+            plot[indicatorChart].apply(plot, settings);
+            // adding extra Y axis to the right side
+            plot.yAxis(1).orientation('right');
+         }
+      }
+
+   },[ arrData, chartTheme, annotation, seriesType, modalIndcator ]);
 
    const setChartData = () => {
       let nid = (id % 2) + 1;
@@ -120,7 +170,6 @@ const AnalyticStockChart = memo(() => {
 
    const setTheme = (val) => {
       let newTheme = anychart.themes[val];
-      anychart.theme(newTheme);
    }
 
    const onSelectAnnotation = (val) => {
@@ -136,15 +185,23 @@ const AnalyticStockChart = memo(() => {
    }
 
    const onSelectIndicator = (val) => {
-      console.log(val)
+      setIndicatorChart(val);
+      setModalIndicator(s => ({ ...s,
+         show: true, 
+         setModalIndicator,
+         tempIndicator: indicators[val]
+      }));
    }
 
    const onResetData = () => {
       // setArrData(defData);
       setCharTheme(defTheme);
       setAnnotation(defAnnotation);
+      setIndicatorChart(defIndicator);
+      setModalIndicator({});
       plot.annotations().removeAllAnnotations();
    }
+   console.log(modalIndcator)
 
    return (<>
       <div className="row">
@@ -188,6 +245,7 @@ const AnalyticStockChart = memo(() => {
             </select>
          </div>
          <div className="col-auto">
+            <ModalIndex { ...modalIndcator } />
             <select placeholder="Annotation" 
                onChange={(e) => onSelectIndicator(e.target.value)}
                value={indicatorChart}
@@ -198,25 +256,6 @@ const AnalyticStockChart = memo(() => {
                   </option>
                )) }
             </select>
-             {/* modal indicator settings */}
-            <ModalIndex chart={chart} anychart={anychart} />
-            <div className="modal fade show" id="indicatorSettingsModal" tabIndex="-1" role="dialog">
-               <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                     <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 className="modal-title" id="indicatorSettingsModalTitle">Indicator Settings</h4>
-                     </div>
-                     <div className="modal-body">
-                        <form id="indicatorForm" className="form"></form>
-                     </div>
-                     <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="addIndicatorButton">Add Indicator</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
          </div>
          <div className="col-auto">
             <button onClick={onResetData}>Reset Data</button>

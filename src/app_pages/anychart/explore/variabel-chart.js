@@ -58,6 +58,7 @@ export const seriesTypeList = [
 ];
 
 export const indicatorList = [
+   { value: "", label: "Add Indicator" },
    { value: "ama", label: "Adaptive Moving Average (AMA)" },
    { value: "aroon", label: "Aroon" },
    { value: "atr", label: "Average True Range (ATR)" },
@@ -91,3 +92,34 @@ export const indicatorList = [
    { value: "williamsR", label: "Williams %R" },
    { value: "volumeMa", label: "VolumeMA" },
 ];
+
+export const seriesTypeIndicator = [
+   'area',
+   'column',
+   'jump-line',
+   'line',
+   'marker',
+   'spline',
+   'spline-area',
+   'step-area',
+   'step-line',
+   'stick'
+]
+
+export const indicatorsSettings = {
+   name: '',
+   plotIndex: 0,
+   defaultSettings: {},
+   seriesType: [
+      'area',
+      'column',
+      'jump-line',
+      'line',
+      'marker',
+      'spline',
+      'spline-area',
+      'step-area',
+      'step-line',
+      'stick'
+   ]
+}

@@ -13,7 +13,7 @@ const options = [
 ];
 
 const MainPage = memo(() => {
-   const [ pageActive, setPageActive ] = useState(options[1]);
+   const [ pageActive, setPageActive ] = useState(options[2]);
 
    const componentActive = (key) => {
       if(key === "anyChart")
