@@ -186,11 +186,13 @@ const AnalyticStockChart = memo(() => {
 
    const onSelectIndicator = (val) => {
       setIndicatorChart(val);
-      setModalIndicator(s => ({ ...s,
-         show: true, 
-         setModalIndicator,
-         tempIndicator: indicators[val]
-      }));
+      if(val !== ""){
+         setModalIndicator(s => ({ ...s,
+            show: true, 
+            setModalIndicator,
+            tempIndicator: indicators[val]
+         }));
+      }
    }
 
    const onResetData = () => {
@@ -201,7 +203,6 @@ const AnalyticStockChart = memo(() => {
       setModalIndicator({});
       plot.annotations().removeAllAnnotations();
    }
-   console.log(modalIndcator)
 
    return (<>
       <div className="row">
