@@ -17,34 +17,46 @@ const defSettingChart = {
    chartData: [],
    chartTheme: "defaultTheme",
    annotation: "default",
+   indicatorValue: "",
+   indicatorName: ""
 }
-const defIndicator = "";
 
 const RelativePerformance = memo((props) => {
    const [code1, setCode1] = useState([]);
    const [code2, setCode2] = useState([]);
    const [codeList, setCodeList] = useState([]);
 
-   const [settingChart, setSettingChart] = useState(defSettingChart)
-   const [indicatorChart, setIndicatorChart] = useState(defIndicator);
-   const [modalIndcator, setModalIndicator] = useState({});
+   const [settingChart, setSettingChart] = useState(defSettingChart);
+   const [modalIndcator, setModalIndicator] = useState({ show: false });
 
    useEffect(() => {
       setCodeList([ ...get_stock_code(), ...get_index_code() ]);
    }, [])
+
+   useEffect(() => {
+      if(modalIndcator?.isActive === true){
+         setSettingChart(s => ({ ...s, 
+            indicatorName: modalIndcator?.indicatorName,
+            indicatorValue: modalIndcator.tempIndicator,
+         }) );
+         setModalIndicator({ show: false })
+      }
+   }, [ modalIndcator?.isActive ]);
 
    const onSelectAnnotation = (annotation) => {
       setSettingChart(s => ({ ...s, annotation }) );
    };
 
    const onSelectIndicator = (val) => {
-      setIndicatorChart(val);
       if(val !== ""){
          setModalIndicator(s => ({ ...s,
             show: true, 
             setModalIndicator,
-            tempIndicator: indicators[val]
+            tempIndicator: indicators[val],
+            indicatorName: val
          }));
+      } else {
+         setSettingChart(s => ({ ...s, indicatorName: "", indicatorValue: "" }) );
       }
    }
 
@@ -95,6 +107,7 @@ const RelativePerformance = memo((props) => {
                title="Select Annotation Type"
                onChange={(e) => onSelectAnnotation(e.target.value)}
                value={settingChart?.annotation} 
+               multiple={false}
             >
                { annotationList.map((d, id) => (
                   <option key={"cht-anntion"+id} value={d.value}>
@@ -108,7 +121,8 @@ const RelativePerformance = memo((props) => {
             <select placeholder="Annotation" 
                className="form-select form-select-sm" 
                onChange={(e) => onSelectIndicator(e.target.value)}
-               value={indicatorChart}
+               value={settingChart?.indicatorName}
+               multiple={false}
             >
                { indicatorList.map((d, id) => (
                   <option key={"cht-series-type"+id} value={d.value}>
@@ -122,6 +136,7 @@ const RelativePerformance = memo((props) => {
                className="form-select form-select-sm" 
                onChange={(e) => onSelectTheme(e.target.value)}
                value={settingChart?.chartTheme}
+               multiple={false}
             >
                { chartThemeList.map((d, id) => (
                   <option key={"cht2-theme"+id} value={d.value}>
@@ -138,14 +153,7 @@ const RelativePerformance = memo((props) => {
                Reset
             </button>
          </div>
-         <RelativePerformanceChart
-            { ...settingChart }
-            // chartData={chartData}
-            // chartTheme={chartTheme}
-            // annotation={annotation}
-            indicatorChart={indicatorChart}
-            
-         />
+         <RelativePerformanceChart { ...settingChart } />
       </div>
    </>)
 })

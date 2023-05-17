@@ -5,9 +5,10 @@ import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 
 const RelativePerformanceChart = memo((props) => {
 
-   let { chartData, chartTheme, chartCode, annotation, indicatorChart } = props;
+   let { chartData, chartTheme, chartCode, annotation, indicatorName, indicatorValue } = props;
 
    const chart = anychart.stock();
+   let mapDataIndicator; // untuk create indicator
    anychart.theme(chartTheme);
    
    // setting chart padding to fit both Y axes
@@ -46,6 +47,9 @@ const RelativePerformanceChart = memo((props) => {
    // mapping dataset by index data [NavDate, Nav, NavUnit]
    Object.keys(datasetObj).length > 0 && Object.keys(datasetObj).map((d, id) => {
       datasetObj[d].addData(chartData[id]);
+      if(id === 0){
+         mapDataIndicator = datasetObj[d].mapAs({ 'value': 1, 'volume': 1, 'open': 1, 'high': 2, 'low': 3, 'close': 4 });
+      }
       mapObj = { ...mapObj, [`mapObj${id}`]: datasetObj[d].mapAs({ 'value': 2 }) }
    })
    
@@ -80,39 +84,38 @@ const RelativePerformanceChart = memo((props) => {
    });
 
    // set indicator
-   if(indicatorChart != ""){
-      const plot = chart.plot(indicatorChart.plotIndex);
-      let settings = [mapObj?.mapObj1];
-      for (let key in indicatorChart) {
+   if(indicatorName != ""){
+      const plot = chart.plot(indicatorValue.plotIndex);
+      let settings = [mapDataIndicator];
+      for (let key in indicatorValue) {
          if (key !== 'overview' && key !== 'plotIndex') {
-            let val = indicatorChart[key];
+            let val = indicatorValue[key];
             val = val == 'true' || val == 'false' ? val == 'true' : val;
             settings.push(val);
          }
       }
-      if(indicatorChart === "psar"){
-         let { accelerationFactorMaximum, accelerationFactorStart, accelerationFactorincrement } = indicatorChart;
-         let indicator = plot.psar(mapObj?.mapObj1, accelerationFactorStart, accelerationFactorincrement, accelerationFactorMaximum).series();
+      if(indicatorName === "psar"){
+         let { accelerationFactorMaximum, accelerationFactorStart, accelerationFactorincrement } = indicatorValue;
+         let indicator = plot.psar(mapDataIndicator, accelerationFactorStart, accelerationFactorincrement, accelerationFactorMaximum).series();
          indicator.fill("#2bccf3");
          indicator.stroke("#2bccf3");
-
          // set indicator settings
          indicator.type('circle').size(1);
          // adding extra Y axis to the right side
          plot.yAxis(1).orientation('right');
-      } else if(indicatorChart == "sma"){
-         let { period_1, period_2, period_3 } = indicatorChart;
-         let sma20 = plot.sma(mapObj?.mapObj1, period_1).series();
+      } else if(indicatorName == "sma"){
+         let { period_1, period_2, period_3 } = indicatorValue;
+         let sma20 = plot.sma(mapDataIndicator, period_1).series();
          sma20.name(`SMA(${period_1})`).stroke('#6745bf');
 
          // create SMA indicator with period 20
-         let sma50 = plot.sma(mapObj?.mapObj1, period_2).series();
+         let sma50 = plot.sma(mapDataIndicator, period_2).series();
          sma50.name(`SMA(${period_2})`).stroke('#bf549b');
 
-         let sma60 = plot.sma(mapObj?.mapObj1, period_3).series();
+         let sma60 = plot.sma(mapDataIndicator, period_3).series();
          sma60.name(`SMA(${period_3})`).stroke('#6cb8c2');
       } else {
-         plot[indicatorChart].apply(plot, settings);
+         plot[indicatorName].apply(plot, settings);
          // adding extra Y axis to the right side
          plot.yAxis(1).orientation('right');
       }
