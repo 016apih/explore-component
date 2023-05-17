@@ -16,10 +16,10 @@ const MainPage = memo(() => {
    const [ pageActive, setPageActive ] = useState(options[2]);
 
    const componentActive = ( Component ) => {
-      if(Component)
-         return <Component />
-      else 
+      if(!Component){
          return <h5>jangan lupa import Componentnya</h5>
+      }
+      return <Component />
    }
 
    return (<>

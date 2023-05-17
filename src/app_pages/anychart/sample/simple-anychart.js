@@ -7,6 +7,7 @@ class SimpleAnychartWithInstance extends Component {
    render() {
       let stage = anychart.graphics.create("simple-anychart");
       let chart = anychart.column([3,1,2]);
+      anychart.theme(anychart.themes.defaultTheme);
       chart.title("My Chart Title");
       chart.legend(true);
       chart.container(stage)
