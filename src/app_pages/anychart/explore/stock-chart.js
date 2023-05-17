@@ -10,8 +10,10 @@ const TestChart = memo(() => {
    const [arrData, setArrData] = useState([]);
    const [firstdate, setFirstdate] = useState("");
    const [lastdate, setLastdate] = useState("");
+
    const chart = anychart.stock();
    const chartData = anychart.data.table();
+   anychart.theme(anychart.themes.defaultTheme);
 
    // set chart padding, background
    chart.padding().right(60);

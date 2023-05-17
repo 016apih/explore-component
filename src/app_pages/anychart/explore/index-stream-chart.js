@@ -7,7 +7,9 @@ import { get_index_stream_data } from '../data';
 const IndexStreamChart = memo(({ chartData }) => {
    // const [chartData, setChartData] = useState(chartData);
    const [isStream, setIsStream] = useState(false);
+
    const chart = anychart.stock(); // create instance stock chart
+   anychart.theme(anychart.themes.defaultTheme);
 
    const indexchart = anychart.data.table();
    indexchart.addData(chartData);

@@ -16,7 +16,8 @@ const ProductComparison = memo(() => {
    const [chartTheme, setCharTheme] = useState(defTheme);
 
    const chart = anychart.stock();
-
+   anychart.theme(anychart.themes.defaultTheme);
+   
    // set scroll date
    chart.scroller(true); 
    chart.scroller().enabled(false);
