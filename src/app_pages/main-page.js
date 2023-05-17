@@ -7,21 +7,17 @@ import { AnyChartPage } from './anychart';
 import { SelectComponent } from '../app_components';
 
 const options = [
-   { key: "form", value: 'form', label: 'Form' },
-   { key: "agGrid", value: 'agGrid', label: 'Tabel Ag Grid' },
-   { key: "anyChart", value: 'anyChart', label: 'AnyChart' },
+   { key: "form", value: 'form', label: 'Form', comps: FormCard1 },
+   { key: "agGrid", value: 'agGrid', label: 'Tabel Ag Grid', comps: AgGridPage },
+   { key: "anyChart", value: 'anyChart', label: 'AnyChart', comps: AnyChartPage },
 ];
 
 const MainPage = memo(() => {
    const [ pageActive, setPageActive ] = useState(options[2]);
 
-   const componentActive = (key) => {
-      if(key === "anyChart")
-         return <AnyChartPage />
-      else if(key === "form")
-         return <FormCard1 />
-      else if(key === "agGrid")
-         return <AgGridPage />
+   const componentActive = ( Component ) => {
+      if(Component)
+         return <Component />
       else 
          return <h5>jangan lupa import Componentnya</h5>
    }
@@ -35,7 +31,7 @@ const MainPage = memo(() => {
          />
       </div>
       {
-         componentActive(pageActive.key)
+         componentActive(pageActive.comps)
       }
    </>)
 });
