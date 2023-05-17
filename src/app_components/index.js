@@ -1,1 +1,1 @@
-export { default as SelectComponent } from './form/SelectComponent.js';
+export { default as SelectComponent } from './form/SelectComponent/SelectComponent.js';
