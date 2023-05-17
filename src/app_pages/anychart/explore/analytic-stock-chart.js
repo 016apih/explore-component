@@ -4,7 +4,6 @@ import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { get_analytic_stock_chart } from '../data';
 import { chartThemeList, annotationList, seriesTypeList, indicatorList } from './variabel-chart';
-import { Modal } from 'bootstrap';
 import { indicators } from '../../../assets/anychart'
 import ModalIndex from './modal';
 
@@ -15,6 +14,7 @@ const defTheme = "coffee"; // "defaultTheme";
 const defAnnotation = "default";
 const defSeries = "candlestick";
 const defIndicator = "";
+const defIndicatorVal = "";
 
 const AnalyticStockChart = memo(() => {
    const [id, setId] = useState(1);
@@ -25,7 +25,8 @@ const AnalyticStockChart = memo(() => {
    const [chartTheme, setCharTheme] = useState(defTheme);
    const [annotation, setAnnotation] = useState(defAnnotation);
    const [seriesType, setSeriesType] = useState(defSeries);
-   const [indicatorChart, setIndicatorChart] = useState(defIndicator);
+   const [indicatorName, setIndicatorName] = useState(defIndicator);
+   const [indicatorValue, setIndicatorValue] = useState(defIndicatorVal);
    const [modalIndcator, setModalIndicator] = useState({});
    
    const chart = anychart.stock();
@@ -51,7 +52,7 @@ const AnalyticStockChart = memo(() => {
    plot.xMinorGrid().stroke({color: "#555555", dash: "2 4"});
 
    // set orientation y-axis to the right side
-   plot.yAxis().orientation('right');
+   // plot.yAxis().orientation('right');
 
    // set annotation in plot (chart 1)
    const controller = plot.annotations();
@@ -79,6 +80,45 @@ const AnalyticStockChart = memo(() => {
    volumeSeries1.fill("#ff6d00");
    volumeSeries1.stroke("#ff6d00");
    volumeSeries1.bottom(0);
+
+   // set indicator
+   if(indicatorName !== ""){
+      const plot = chart.plot(indicatorValue.plotIndex);
+      let settings = [mapData];
+      for (let key in indicatorValue) {
+         if (key !== 'overview' && key !== 'plotIndex') {
+            let val = indicatorValue[key];
+            val = val == 'true' || val == 'false' ? val == 'true' : val;
+            settings.push(val);
+         }
+      }
+      if(indicatorName === "psar"){
+         let { accelerationFactorMaximum, accelerationFactorStart, accelerationFactorincrement } = indicatorValue;
+         let indicator = plot.psar(mapData, accelerationFactorStart, accelerationFactorincrement, accelerationFactorMaximum).series();
+         indicator.fill("#2bccf3");
+         indicator.stroke("#2bccf3");
+
+         // set indicator settings
+         indicator.type('circle').size(1);
+         // adding extra Y axis to the right side
+         plot.yAxis(1).orientation('right');
+      } else if(indicatorName == "sma"){
+         let { period_1, period_2, period_3 } = indicatorValue;
+         let sma20 = plot.sma(mapData, period_1).series();
+         sma20.name(`SMA(${period_1})`).stroke('#6745bf');
+
+         // create SMA indicator with period 20
+         let sma50 = plot.sma(mapData, period_2).series();
+         sma50.name(`SMA(${period_2})`).stroke('#bf549b');
+
+         let sma60 = plot.sma(mapData, period_3).series();
+         sma60.name(`SMA(${period_3})`).stroke('#6cb8c2');
+      } else {
+         plot[indicatorName].apply(plot, settings);
+         // adding extra Y axis to the right side
+         // plot.yAxis(1).orientation('right');
+      }
+   }
 
    // disable the grouping feature
    const grouping = chart.grouping();
@@ -108,46 +148,13 @@ const AnalyticStockChart = memo(() => {
          controller.startDrawing(annotation);
       }
 
-      // set indicator
-      if(modalIndcator.indicator){
-         const plot = chart.plot(modalIndcator.indicator.plotIndex);
-         let settings = [mapData];
-         for (let key in modalIndcator.indicator) {
-            if (key !== 'overview' && key !== 'plotIndex') {
-               let val = modalIndcator.indicator[key];
-               val = val == 'true' || val == 'false' ? val == 'true' : val;
-               settings.push(val);
-            }
-         }
-         if(indicatorChart === "psar"){
-            let { accelerationFactorMaximum, accelerationFactorStart, accelerationFactorincrement } = modalIndcator.indicator;
-            let indicator = plot.psar(mapData, accelerationFactorStart, accelerationFactorincrement, accelerationFactorMaximum).series();
-            indicator.fill("#2bccf3");
-            indicator.stroke("#2bccf3");
-
-            // set indicator settings
-            indicator.type('circle').size(1);
-            // adding extra Y axis to the right side
-            plot.yAxis(1).orientation('right');
-         } else if(indicatorChart == "sma"){
-            let { period_1, period_2, period_3 } = modalIndcator.indicator;
-            let sma20 = plot.sma(mapData, period_1).series();
-            sma20.name(`SMA(${period_1})`).stroke('#6745bf');
-
-            // create SMA indicator with period 20
-            let sma50 = plot.sma(mapData, period_2).series();
-            sma50.name(`SMA(${period_2})`).stroke('#bf549b');
-
-            let sma60 = plot.sma(mapData, period_3).series();
-            sma60.name(`SMA(${period_3})`).stroke('#6cb8c2');
-         } else {
-            plot[indicatorChart].apply(plot, settings);
-            // adding extra Y axis to the right side
-            plot.yAxis(1).orientation('right');
-         }
+      if(modalIndcator?.isActive === true){
+         setIndicatorValue(modalIndcator.tempIndicator);
+         setIndicatorName(modalIndcator?.indicatorName);
+         setModalIndicator({ show: false })
       }
 
-   },[ arrData, annotation, modalIndcator ]);
+   },[ annotation, modalIndcator.isActive ]);
 
    const setChartData = () => {
       let nid = (id % 2) + 1;
@@ -173,12 +180,12 @@ const AnalyticStockChart = memo(() => {
    }, [seriesType])
 
    const onSelectIndicator = (val) => {
-      setIndicatorChart(val);
       if(val !== ""){
          setModalIndicator(s => ({ ...s,
             show: true, 
             setModalIndicator,
-            tempIndicator: indicators[val]
+            tempIndicator: indicators[val],
+            indicatorName: val
          }));
       }
    }
@@ -186,7 +193,8 @@ const AnalyticStockChart = memo(() => {
    const onResetData = () => {
       setCharTheme(defTheme);
       setAnnotation(defAnnotation);
-      setIndicatorChart(defIndicator);
+      setIndicatorName(defIndicator);
+      setIndicatorValue(defIndicatorVal)
       setModalIndicator({});
       plot.annotations().removeAllAnnotations();
    }
@@ -200,6 +208,7 @@ const AnalyticStockChart = memo(() => {
             <select placeholder="Theme" 
                onChange={(e) => onSelectTheme(e.target.value)}
                value={chartTheme}
+               multiple={false}
             >
                { chartThemeList.map((d, id) => (
                   <option key={"cht2-theme"+id} value={d.value}>
@@ -212,6 +221,7 @@ const AnalyticStockChart = memo(() => {
             <select placeholder="Annotation" 
                onChange={(e) => onSelectAnnotation(e.target.value)}
                value={annotation}
+               multiple={false}
             >
                { annotationList.map((d, id) => (
                   <option key={"cht-anntion"+id} value={d.value}>
@@ -224,6 +234,7 @@ const AnalyticStockChart = memo(() => {
             <select placeholder="Annotation" 
                onChange={(e) => onSelectSeriesType(e.target.value)}
                value={seriesType}
+               multiple={false}
             >
                { seriesTypeList.map((d, id) => (
                   <option key={"cht-series-type"+id} value={d.value}>
@@ -236,7 +247,8 @@ const AnalyticStockChart = memo(() => {
             <ModalIndex { ...modalIndcator } />
             <select placeholder="Annotation" 
                onChange={(e) => onSelectIndicator(e.target.value)}
-               value={indicatorChart}
+               value={indicatorName}
+               multiple={false}
             >
                { indicatorList.map((d, id) => (
                   <option key={"cht-series-type"+id} value={d.value}>

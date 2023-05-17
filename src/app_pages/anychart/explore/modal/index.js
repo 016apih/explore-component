@@ -28,21 +28,15 @@ function getInputLabelText(keyText) {
    return result.join(' ').replace(/-\s/, '-');
 }
 
-const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) => {
-
-   const [indicator, setIndicator] = useState(tempIndicator);
-
-   useEffect(() => {
-      setIndicator(tempIndicator)
-   },[tempIndicator])
+const ModalIndex = memo(( props ) => {
+   let { show=false, tempIndicator={}, setModalIndicator } = props;
 
    const handleClose = () => {
-      setModalIndicator({});
+      setModalIndicator({ show: false });
    };
 
    const handleSave = () => {
-      console.log("asuppp")
-      setModalIndicator({ indicator: indicator });
+      setModalIndicator(s => ({ ...s, show: false, isActive: true,}) );
    }
 
    const setColClass= (id, rowCount=12, colmCount=3) => {
@@ -54,11 +48,19 @@ const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) =>
       return `col-sm-${rowCount/colmCount}`;
    }
 
+   const onChangeInput = (e) => {
+      let { name, value } = e.target;
+      let newVal = typeof(tempIndicator[name]) === "number" ? value * 1 : value;
+      setModalIndicator({ ...props, 
+         tempIndicator: { ...tempIndicator, [name]: newVal } 
+      });
+   }
+
    return (
       <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>
             <Modal.Title>
-               {indicator?.overview?.title}
+               {tempIndicator?.overview?.title}
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
@@ -73,13 +75,13 @@ const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) =>
                               <input type="number"
                                  name={d} id={d}
                                  className="form-control form-control-sm"
-                                 value={indicator[d]}
-                                 onChange={(e) => setIndicator(s => ({ ...s, [e.target.name]: e.target.value }) )}
+                                 value={tempIndicator[d]}
+                                 onChange={onChangeInput}
                               />
                            : <select className="form-control form-control-sm select show-tick" 
                                  name={d} id={d} defaultValue={tempIndicator[d]}
-                                 value={indicator[d]}
-                                 onChange={(e) => setIndicator(s => ({ ...s, [e.target.name]: e.target.value }) )}
+                                 value={tempIndicator[d]}
+                                 onChange={onChangeInput}
                               >
                                  {(typeof(tempIndicator[d]) === "string" ? seriesTypeIndicator : tempIndicator[d]).map((dd, key) => (
                                     <option key={"opt-idc-s-"+key} value={dd.toLocaleLowerCase()}>
