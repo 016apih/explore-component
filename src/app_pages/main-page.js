@@ -7,9 +7,9 @@ import { AnyChartPage } from './anychart';
 import { SelectComponent } from '../app_components';
 
 const options = [
-   { key: "form", value: 'form', label: 'Form', comps: FormCard1 },
-   { key: "agGrid", value: 'agGrid', label: 'Tabel Ag Grid', comps: AgGridPage },
-   { key: "anyChart", value: 'anyChart', label: 'AnyChart', comps: AnyChartPage },
+   { key: "form", value: 'form', code: "code", name: "name", label: 'Form', comps: FormCard1 },
+   { key: "agGrid", value: 'agGrid', code: "code", name: "name", label: 'Tabel Ag Grid', comps: AgGridPage },
+   { key: "anyChart", value: 'anyChart', code: "code", name: "name", label: 'AnyChart', comps: AnyChartPage },
 ];
 
 const MainPage = memo(() => {

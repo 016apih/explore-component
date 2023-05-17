@@ -1,18 +1,7 @@
 import React, { memo, useState, Suspense } from 'react';
 import { Form } from 'react-bootstrap';
 
-import { 
-   AnalyticStockChart,
-   anyChartList,
-   IndexStreamChart,
-   ProductComparison,
-   // SimpleAnychart,
-   SimpleAnychartWithInstance,
-   SimpleDasboard,
-   // SimpleStream,
-   StockChartPersistent,
-   StockChartSample
-} from './index.js';
+import { anyChartList } from './index.js';
 
 // styles
 import './styles.css';
@@ -23,25 +12,11 @@ const AnyChartPage = memo(() => {
 
    const [ tableActive, setTableActive ] = useState(anyChartList[0]);
 
-   const componetActive = (key) => {
-      if(key === "simple")
-         return <SimpleAnychartWithInstance />;
-      else if(key === "simple-dasboard")
-         return <SimpleDasboard />
-      else if(key === "simple-stock-chart")
-         return <StockChartSample />
-      // else if(key === "simple-stream")
-      //    <SimpleStream />
-      else if(key === "index-stream-chart")
-         return <IndexStreamChart />
-      else if(key === "stock-chart")
-         return <StockChartPersistent />
-      else if(key === "product-comparison")
-         return <ProductComparison />
-      else if(key === "analytic-stock-chart")
-         return <AnalyticStockChart />
-      else
+   const componetActive = (Component) => {
+      if(!(Component))
          return <h5>jangan lupa import Componentnya</h5>
+
+      return <Component />
    }
 
    return (
@@ -60,7 +35,7 @@ const AnyChartPage = memo(() => {
             )}
          </div>
          <div className="row mx-2">
-            { componetActive(tableActive.key) }
+            { componetActive(tableActive.comp) }
          </div>
       </Suspense>
    )

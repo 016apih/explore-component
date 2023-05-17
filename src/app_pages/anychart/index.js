@@ -1,24 +1,25 @@
-export { default as AnyChartPage } from './anychart-page.js';
-export { default as SimpleAnychart, SimpleAnychartWithInstance } from './sample/simple-anychart.js';
-export { default as SimpleDasboard } from './sample/simple-dasboard.js';
-export { default as SimpleStream } from './sample/simple-stream.js';
-export { default as StockChartSample } from './sample/stock-chart-simple.js'
+import AnalyticStockChart from './explore/analytic-stock-chart.js';
+import ProductComparison from './explore/product-comparison-chart.js';
+import StockChartPersistent from './explore/stock-chart.js';
+import IndexStreamChart from './explore/index-stream-chart.js';
 
-export { default as IndexStreamChart } from './explore/index-stream-chart.js';
-export { default as StockChartPersistent } from './explore/stock-chart.js';
-export { default as ProductComparison } from './explore/product-comparison-chart.js';
-export { default as AnalyticStockChart } from './explore/analytic-stock-chart.js';
+import SimpleAnychart from './sample/simple-anychart.js';
+import SimpleDasboard from './sample/simple-dasboard.js';
+import SimpleStream from './sample/simple-stream.js';
+import StockChartSample from './sample/stock-chart-simple.js';
+
+export { default as AnyChartPage } from './anychart-page.js';
 
 export const anyChartList = [
-   { key: "simple", name: "SimpleAnychart" },
-   { key: "simple-dasboard", name: "SimpleDasboard" },
-   {  key: "simple-stock-chart", name: "StockChartSample" },
-   {  key: "simple-stream", name: "SimpleStream" },
+   { key: "simple", name: "SimpleAnychart", comp: SimpleAnychart },
+   { key: "simple-dasboard", name: "SimpleDasboard", comp: SimpleDasboard},
+   {  key: "simple-stock-chart", name: "StockChartSample", comp: StockChartSample },
+   {  key: "simple-stream", name: "SimpleStream", comp: SimpleStream },
 
-   {  key: "index-stream-chart", name: "IndexStreamChart" },
-   {  key: "stock-chart", name: "StockChartPersistent" },
-   {  key: "product-comparison", name: "ProductComparison" },
-   {  key: "analytic-stock-chart", name: "AnalyticStockChart" },
+   {  key: "index-stream-chart", name: "IndexStreamChart", comp: IndexStreamChart },
+   {  key: "stock-chart", name: "StockChartPersistent", comp: StockChartPersistent },
+   {  key: "product-comparison", name: "ProductComparison", comp: ProductComparison },
+   {  key: "analytic-stock-chart", name: "AnalyticStockChart", comp: AnalyticStockChart },
 
 ]
 
