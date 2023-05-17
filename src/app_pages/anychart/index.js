@@ -7,6 +7,7 @@ import SimpleAnychart from './sample/simple-anychart.js';
 import SimpleDasboard from './sample/simple-dasboard.js';
 import SimpleStream from './sample/simple-stream.js';
 import StockChartSample from './sample/stock-chart-simple.js';
+import RelativePerformance from './explore/relative-performance/relative-performance.js';
 
 export { default as AnyChartPage } from './anychart-page.js';
 
@@ -20,6 +21,7 @@ export const anyChartList = [
    {  key: "stock-chart", name: "StockChartPersistent", comp: StockChartPersistent },
    {  key: "product-comparison", name: "ProductComparison", comp: ProductComparison },
    {  key: "analytic-stock-chart", name: "AnalyticStockChart", comp: AnalyticStockChart },
+   {  key: "analytic-relative", name: "RelativePerformance", comp: RelativePerformance },
 
 ]
 
