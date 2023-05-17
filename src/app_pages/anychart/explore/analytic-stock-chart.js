@@ -29,10 +29,16 @@ const AnalyticStockChart = memo(() => {
    const [modalIndcator, setModalIndicator] = useState({});
    
    const chart = anychart.stock();
+   anychart.theme(chartTheme);
    
    // set chart padding, background
    chart.padding().right(60);
    chart.background().fill("none");
+   
+   if(chartTheme === "lightGlamour"){
+      let backgroundTooltip = chart.tooltip().background().enabled(true);;
+      backgroundTooltip.fill("#3C3C3C 0.8");
+   }
 
    // create plot on the chart
    const plot = chart.plot(0);
@@ -94,17 +100,7 @@ const AnalyticStockChart = memo(() => {
    chartData.addData(arrData);
    aaplSeries.seriesType(seriesType);
 
-   const setPlotAnnotation = (val) => {
-      if(val === "default")
-         controller.removeAllAnnotations();
-      else
-         controller.startDrawing(val);
-   };
-
    useEffect(() => {
-      // set theme      
-      anychart.theme(chartTheme);
-
       // set annotation
       if(annotation === "default"){
          controller.removeAllAnnotations();
@@ -119,7 +115,6 @@ const AnalyticStockChart = memo(() => {
          for (let key in modalIndcator.indicator) {
             if (key !== 'overview' && key !== 'plotIndex') {
                let val = modalIndcator.indicator[key];
-               console.log()
                val = val == 'true' || val == 'false' ? val == 'true' : val;
                settings.push(val);
             }
@@ -152,7 +147,7 @@ const AnalyticStockChart = memo(() => {
          }
       }
 
-   },[ arrData, chartTheme, annotation, seriesType, modalIndcator ]);
+   },[ arrData, annotation, modalIndcator ]);
 
    const setChartData = () => {
       let nid = (id % 2) + 1;
@@ -163,26 +158,19 @@ const AnalyticStockChart = memo(() => {
       setLastdate(ndata[ndata.length - 1][0]);
    }
 
-   const onSelectTheme = (val) => {
-      setTheme(val)
-      setCharTheme(val)
-   }
-
-   const setTheme = (val) => {
-      let newTheme = anychart.themes[val];
-   }
-
+   const onSelectTheme = useCallback((val) => {
+      setCharTheme(val);
+      anychart.theme(val);
+   }, [chartTheme])
+   
    const onSelectAnnotation = (val) => {
-      // start drawing the annotation
-      setPlotAnnotation(val)
       setAnnotation(val);
-   }
+   };
 
-   const onSelectSeriesType = (val) => {
-      // switch the series type
+   const onSelectSeriesType = useCallback((val) => {
       aaplSeries.seriesType(val);
       setSeriesType(val);
-   }
+   }, [seriesType])
 
    const onSelectIndicator = (val) => {
       setIndicatorChart(val);
@@ -196,7 +184,6 @@ const AnalyticStockChart = memo(() => {
    }
 
    const onResetData = () => {
-      // setArrData(defData);
       setCharTheme(defTheme);
       setAnnotation(defAnnotation);
       setIndicatorChart(defIndicator);

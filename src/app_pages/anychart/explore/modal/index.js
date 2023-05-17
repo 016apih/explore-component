@@ -30,8 +30,11 @@ function getInputLabelText(keyText) {
 
 const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) => {
 
+   const [indicator, setIndicator] = useState(tempIndicator);
+
    useEffect(() => {
-   },[])
+      setIndicator(tempIndicator)
+   },[tempIndicator])
 
    const handleClose = () => {
       setModalIndicator({});
@@ -39,7 +42,7 @@ const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) =>
 
    const handleSave = () => {
       console.log("asuppp")
-      setModalIndicator({ indicator: tempIndicator });
+      setModalIndicator({ indicator: indicator });
    }
 
    const setColClass= (id, rowCount=12, colmCount=3) => {
@@ -55,7 +58,7 @@ const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) =>
       <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>
             <Modal.Title>
-               {tempIndicator?.overview?.title}
+               {indicator?.overview?.title}
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
@@ -70,12 +73,13 @@ const ModalIndex = memo(({ show=false, tempIndicator={}, setModalIndicator }) =>
                               <input type="number"
                                  name={d} id={d}
                                  className="form-control form-control-sm"
-                                 defaultValue={tempIndicator[d]}
-                                 value={tempIndicator[d]}
+                                 value={indicator[d]}
+                                 onChange={(e) => setIndicator(s => ({ ...s, [e.target.name]: e.target.value }) )}
                               />
                            : <select className="form-control form-control-sm select show-tick" 
-                                 id={d} defaultValue={tempIndicator[d]}
-                                 value={tempIndicator[d]}
+                                 name={d} id={d} defaultValue={tempIndicator[d]}
+                                 value={indicator[d]}
+                                 onChange={(e) => setIndicator(s => ({ ...s, [e.target.name]: e.target.value }) )}
                               >
                                  {(typeof(tempIndicator[d]) === "string" ? seriesTypeIndicator : tempIndicator[d]).map((dd, key) => (
                                     <option key={"opt-idc-s-"+key} value={dd.toLocaleLowerCase()}>
