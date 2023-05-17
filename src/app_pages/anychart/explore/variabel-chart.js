@@ -21,7 +21,7 @@ export const chartThemeList = [
 export const annotationList = [
    { value: "default", label: "Annotation Type" },	
    { value: "andrews-pitchfork", label: "Andrews Pitchfork" },	
-   { value: "ellipse	Ellipse", label: "Ellipse" },	
+   { value: "ellipse", label: "Ellipse" },	
    { value: "fibonacci-arc", label: "Fibonacci arc" },	
    { value: "fibonacci-fan", label: "Fibonacci fan" },	
    { value: "fibonacci-retracement", label: "Fibonacci retracement" },	
