@@ -9,6 +9,8 @@ import SimpleStream from './sample/simple-stream.js';
 import StockChartSample from './sample/stock-chart-simple.js';
 import RelativePerformance from './explore/relative-performance/relative-performance.js';
 
+import NewIndexChart from './explore/new-index-chart/new-index.js';
+
 export { default as AnyChartPage } from './anychart-page.js';
 
 export const anyChartList = [
@@ -23,5 +25,7 @@ export const anyChartList = [
    {  key: "analytic-stock-chart", name: "AnalyticStockChart", comp: AnalyticStockChart },
    {  key: "analytic-relative", name: "RelativePerformance", comp: RelativePerformance },
 
+   // untuk RFW
+   {  key: "new-index-chart", name: "NewIndexChart", comp: NewIndexChart },
 ]
 

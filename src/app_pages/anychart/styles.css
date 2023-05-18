@@ -167,7 +167,14 @@ body/*, html*/ {
 }
 #stock-chart-container, 
 #product-comparison-chart,
-#analytic-stock-chart-container {
+#analytic-stock-chart-container,
+#index-container {
    height: 500px;
-   min-height: 600px; 
+   min-height: 400px; 
+}
+/* range selector top right */
+#rangeselectorContainer {
+   position: absolute;
+   top: 15px;
+   right: 25px; 
 }
