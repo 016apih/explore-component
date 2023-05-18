@@ -1,6 +1,6 @@
 import AnalyticStockChart from './explore/analytic-stock-chart.js';
 import ProductComparison from './explore/product-comparison-chart.js';
-import StockChartPersistent from './explore/stock-chart.js';
+import StockChartPersistent from './explore/stock-chart-persistent.js';
 import IndexStreamChart from './explore/index-stream-chart.js';
 
 import SimpleAnychart from './sample/simple-anychart.js';

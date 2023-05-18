@@ -3,10 +3,15 @@ import anychart from 'anychart';
 import 'anychart/dist/css/anychart-ui.min.css'; // wajib ada untuk merapihkan tampilannya
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
-import { get_stock_chart } from '../data';
+import { get_stock_chart, get_stock_code } from '../data';
+import { SelectComponent } from '../../../app_components';
 
-const TestChart = memo(() => {
+
+const StockChartPersistent = memo(() => {
    const [id, setId] = useState(1);
+   const [codeList, setCodeList] = useState(get_stock_code());
+   const [code, setCode] = useState(null);
+
    const [arrData, setArrData] = useState([]);
    const [firstdate, setFirstdate] = useState("");
    const [lastdate, setLastdate] = useState("");
@@ -69,9 +74,20 @@ const TestChart = memo(() => {
       setLastdate(ndata[ndata.length - 1][0]);
    }
 
+   const onSelectedCode = (e) => {
+      setCode(e);
+      setArrData(get_stock_chart(e.value));
+   }
+
    return (<>
-      <div>
-         <button onClick={setChartData}>Set Chart Data</button>
+      <div className="row">
+         <div className="col-sm-3">
+            <SelectComponent
+               options={codeList}
+               onChange={onSelectedCode}
+               value={code}
+            />
+         </div>
       </div>
       <AnyChart 
          instance={chart} 
@@ -82,4 +98,4 @@ const TestChart = memo(() => {
    )
 })
 
-export default TestChart;
+export default StockChartPersistent;
