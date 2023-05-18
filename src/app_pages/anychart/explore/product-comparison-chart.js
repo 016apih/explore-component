@@ -17,6 +17,11 @@ const ProductComparison = memo(() => {
 
    const chart = anychart.stock();
    anychart.theme(anychart.themes.defaultTheme);
+
+   if(chartTheme === "lightGlamour"){
+      let backgroundTooltip = chart.tooltip().background().enabled(true);;
+      backgroundTooltip.fill("#3C3C3C 0.8");
+   }
    
    // set scroll date
    chart.scroller(true); 
@@ -60,23 +65,23 @@ const ProductComparison = memo(() => {
 
       // create dataset
       let datasetObj = {}, mapObj={}, chartObj={};
-      chartData.map((d, key) => {
+      chartData.forEach((d, key) => {
          datasetObj = { ...datasetObj, [`tab${key}`]: anychart.data.table()}
       });
 
       // mapping dataset by index data [NavDate, Nav, NavUnit]
-      Object.keys(datasetObj).length > 0 && Object.keys(datasetObj).map((d, id) => {
+      Object.keys(datasetObj).length > 0 && Object.keys(datasetObj).forEach((d, id) => {
          datasetObj[d].addData(chartData[id]);
          mapObj = { ...mapObj, [`mapObj${id}`]: datasetObj[d].mapAs({ 'value': 2 }) }
       })
       
       // create line series on the plot
-      Object.keys(mapObj).length > 0 && Object.keys(mapObj).map((d, key) => {
+      Object.keys(mapObj).length > 0 && Object.keys(mapObj).forEach((d, key) => {
          chartObj = { ...chartObj, [`chartObj${key}`]: plot['line'](mapObj[d])}
       });
 
       // set series
-      Object.keys(chartObj).length > 0 && Object.keys(chartObj).map((d, id) => {
+      Object.keys(chartObj).length > 0 && Object.keys(chartObj).forEach((d, id) => {
          let chartSeries = chartObj[d];
          let colorSeries = fillColor[id];
          let nameSeries = chartCode[id]?.saham?.toUpperCase();
