@@ -167,6 +167,7 @@ const AnalyticStockChart = memo(() => {
 
    const onSelectTheme = useCallback((val) => {
       setCharTheme(val);
+      setAnnotation(defAnnotation);
       anychart.theme(val);
    }, [chartTheme])
    
@@ -177,6 +178,7 @@ const AnalyticStockChart = memo(() => {
    const onSelectSeriesType = useCallback((val) => {
       aaplSeries.seriesType(val);
       setSeriesType(val);
+      setAnnotation(defAnnotation);
    }, [seriesType])
 
    const onSelectIndicator = (val) => {
