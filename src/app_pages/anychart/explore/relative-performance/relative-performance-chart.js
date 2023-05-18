@@ -17,9 +17,13 @@ const RelativePerformanceChart = memo((props) => {
    // create plot on the chart
    const plot = chart.plot(0);
    plot.yScale().comparisonMode('percent');
+   plot.yAxis().labels().format('{%Value}%');
    plot.yScale({'scale': 'linear', 'indicators': {}});
 
-   plot.yAxis().labels().format('{%Value}%');
+   // disable the y-label & y-stroke on the first plot
+   plot.crosshair().yStroke(null);
+   plot.crosshair().yLabel(false);
+
    // set orientation y-axis to the right side
    // plot.yAxis().orientation('right');
 
@@ -40,12 +44,12 @@ const RelativePerformanceChart = memo((props) => {
 
    // create dataset
    let datasetObj = {}, mapObj={}, chartObj={};
-   chartData.map((d, key) => {
+   chartData.forEach((d, key) => {
       datasetObj = { ...datasetObj, [`tab${key}`]: anychart.data.table()}
    });
 
    // mapping dataset by index data [NavDate, Nav, NavUnit]
-   Object.keys(datasetObj).length > 0 && Object.keys(datasetObj).map((d, id) => {
+   Object.keys(datasetObj).length > 0 && Object.keys(datasetObj).forEach((d, id) => {
       datasetObj[d].addData(chartData[id]);
       if(id === 0){
          mapDataIndicator = datasetObj[d].mapAs({ 'value': 1, 'volume': 1, 'open': 1, 'high': 2, 'low': 3, 'close': 4 });
@@ -54,12 +58,12 @@ const RelativePerformanceChart = memo((props) => {
    })
    
    // create line series on the plot
-   Object.keys(mapObj).length > 0 && Object.keys(mapObj).map((d, key) => {
+   Object.keys(mapObj).length > 0 && Object.keys(mapObj).forEach((d, key) => {
       chartObj = { ...chartObj, [`chartObj${key}`]: plot['line'](mapObj[d])}
    });
 
    // set series
-   Object.keys(chartObj).length > 0 && Object.keys(chartObj).map((d, id) => {
+   Object.keys(chartObj).length > 0 && Object.keys(chartObj).forEach((d, id) => {
       let chartSeries = chartObj[d];
       let colorSeries = fillColor[id];
       let nameSeries = chartCode[id]?.toUpperCase();
@@ -115,7 +119,7 @@ const RelativePerformanceChart = memo((props) => {
          let sma60 = plot.sma(mapDataIndicator, period_3).series();
          sma60.name(`SMA(${period_3})`).stroke('#6cb8c2');
       } else {
-         plot[indicatorName].apply(plot, settings);
+         plot[indicatorName]?.apply(plot, settings);
          // adding extra Y axis to the right side
          plot.yAxis(1).orientation('right');
       }

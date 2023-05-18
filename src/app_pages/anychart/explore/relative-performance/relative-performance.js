@@ -22,8 +22,8 @@ const defSettingChart = {
 }
 
 const RelativePerformance = memo((props) => {
-   const [code1, setCode1] = useState([]);
-   const [code2, setCode2] = useState([]);
+   const [code1, setCode1] = useState(null);
+   const [code2, setCode2] = useState(null);
    const [codeList, setCodeList] = useState([]);
 
    const [settingChart, setSettingChart] = useState(defSettingChart);
@@ -38,6 +38,7 @@ const RelativePerformance = memo((props) => {
          setSettingChart(s => ({ ...s, 
             indicatorName: modalIndcator?.indicatorName,
             indicatorValue: modalIndcator.tempIndicator,
+            annotation: "default",
          }) );
          setModalIndicator({ show: false })
       }
@@ -65,12 +66,16 @@ const RelativePerformance = memo((props) => {
    }
 
    const onShowGraph = () => {
-      let data1 = code1.type === "index" ? get_index_chart(code1.code) : get_stock_chart(code1.code)
-      let data2 = code2.type === "index" ? get_index_chart(code2.code) : get_stock_chart(code2.code)
-      setSettingChart(s => ({ ...s, 
-         chartCode: [code1.code, code2.code],
-         chartData: [data1, data2] 
-      }) );
+      if(code1 === null || code2 === null){
+         alert('Mohon isi dulu kedua pilihan');
+      } else {
+         let data1 = code1.type === "index" ? get_index_chart(code1.code) : get_stock_chart(code1.code)
+         let data2 = code2.type === "index" ? get_index_chart(code2.code) : get_stock_chart(code2.code)
+         setSettingChart(s => ({ ...s, 
+            chartCode: [code1.code, code2.code],
+            chartData: [data1, data2] 
+         }) );
+      }
    }
 
    const onReset = () => {
@@ -108,6 +113,7 @@ const RelativePerformance = memo((props) => {
                onChange={(e) => onSelectAnnotation(e.target.value)}
                value={settingChart?.annotation} 
                multiple={false}
+               disabled={code1 === null || code2 === null}
             >
                { annotationList.map((d, id) => (
                   <option key={"cht-anntion"+id} value={d.value}>
@@ -123,6 +129,7 @@ const RelativePerformance = memo((props) => {
                onChange={(e) => onSelectIndicator(e.target.value)}
                value={settingChart?.indicatorName}
                multiple={false}
+               disabled={code1 === null || code2 === null}
             >
                { indicatorList.map((d, id) => (
                   <option key={"cht-series-type"+id} value={d.value}>
@@ -137,6 +144,7 @@ const RelativePerformance = memo((props) => {
                onChange={(e) => onSelectTheme(e.target.value)}
                value={settingChart?.chartTheme}
                multiple={false}
+               disabled={code1 === null || code2 === null}
             >
                { chartThemeList.map((d, id) => (
                   <option key={"cht2-theme"+id} value={d.value}>

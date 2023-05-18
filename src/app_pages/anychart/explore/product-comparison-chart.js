@@ -126,6 +126,7 @@ const ProductComparison = memo(() => {
             <select placeholder="Theme" 
                onChange={(e) => onSelectTheme(e.target.value)}
                value={chartTheme}
+               multiple={false}
             >
                { chartThemeList.map((d, id) => (
                   <option key={"cht-theme"+id} value={d.value}>

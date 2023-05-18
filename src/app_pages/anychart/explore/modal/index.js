@@ -82,6 +82,7 @@ const ModalIndex = memo(( props ) => {
                                  name={d} id={d} defaultValue={tempIndicator[d]}
                                  value={tempIndicator[d]}
                                  onChange={onChangeInput}
+                                 multiple={false}
                               >
                                  {(typeof(tempIndicator[d]) === "string" ? seriesTypeIndicator : tempIndicator[d]).map((dd, key) => (
                                     <option key={"opt-idc-s-"+key} value={dd.toLocaleLowerCase()}>
