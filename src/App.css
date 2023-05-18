@@ -1,3 +1,16 @@
+:root{
+  --primary-sky: #2B9CD1;
+  --primary-green: #9AC044;
+  --secondary-sky: #F40303;
+  --secondary-success: #44C05F;
+  --secondary-yellow: #D99F2E;
+  --netral-black: #14181D;
+  --netral-grey: #6F787C;
+  --netral-grey-ash: #CFD6DA
+
+}
+
+
 .App {
   text-align: center;
 }

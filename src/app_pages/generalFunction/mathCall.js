@@ -1,5 +1,4 @@
 export const setRupiah = (nStr, npoint = 0, defaultValue, defPostpend='') => {
-   console.log(nStr)
    if(nStr && nStr !== "\xa0"){
       let num = (nStr * 1).toFixed(npoint);
       let x = num.toString().split(".");
