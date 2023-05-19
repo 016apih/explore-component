@@ -5,17 +5,14 @@ import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 
 class SimpleAnychartWithInstance extends Component {
    render() {
-      let stage = anychart.graphics.create("simple-anychart");
-      let chart = anychart.column([3,1,2]);
+      this.chart = anychart.column([3,1,2]);
       anychart.theme(anychart.themes.defaultTheme);
-      chart.title("My Chart Title");
-      chart.legend(true);
-      chart.container(stage)
-      chart.draw();
+      this.chart.title("My Chart Title");
+      this.chart.legend(true);
 
       return (
          <div>
-            <AnyChart instance={chart} id="simple-anychart" />
+            <AnyChart instance={this.chart} id="simple-anychart" />
          </div>
       );
    }

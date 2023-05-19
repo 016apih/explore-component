@@ -27,7 +27,7 @@ const NewStockChart = memo(({ chartSeries, chartCode, chartData, chartRange }) =
    chart.crosshair().yLabel().background({ fill: "var(--primary-sky)" });
    chart.crosshair().xLabel().background({ fill: "var(--primary-sky)" });
 
-   // enable html for the legend title
+   // enable the legend title
    plot.legend(false);
 
    // mapping chartData x: time, value: price

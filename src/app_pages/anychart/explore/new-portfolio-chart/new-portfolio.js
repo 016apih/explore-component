@@ -1,6 +1,7 @@
 import React, { memo, useState} from 'react';
 
 import AssetAllocationChart from './asset-allocation-chart.js';
+import ProfitAndLost from './profit&loss/profit-loss.js';
 
 const tabMenu = [
    { id: 1, key: "asset", title: "Asset Allocation" },
@@ -30,13 +31,13 @@ const NewPortfolio = memo(() => {
                      {d.title}
                   </button>
                )) }
-               <div style={{ height: "300px" }}>
-                  <AssetAllocationChart />
+               <div style={{ height: "600px" }}>
+                  { tab === 1 ? <AssetAllocationChart /> : <ProfitAndLost /> }
                </div>
             </div>
          </div>
          <div className="col-md-7">
-            <div className="border border-dark px-2" style={{ height: '400px' }}>
+            <div className="border border-dark px-2" style={{ height: '700px' }}>
                { tabPageMenu.map(d => (
                   <button className={`btn btn-sm border border-dark ${bgActive(tabPage, d.id)}`}
                      onClick={() => setTabPage(d.id)}
