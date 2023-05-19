@@ -23,7 +23,7 @@ const AnyChartPage = memo(() => {
       <Suspense fallback={<div>Loading...</div>}>
          <div className="row mx-2">
             {anyChartList.map(d => 
-               <div key={d.key} className="col-auto mb-3">
+               <div key={"anychart-list-menu-"+d.key} className="col-auto mb-3">
                   <Form.Check 
                      type="radio" 
                      id={d.key}

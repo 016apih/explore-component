@@ -30,7 +30,7 @@ const AgGridPage = memo(() => {
       <Suspense fallback={<div>Loading...</div>}>
          <div className="row mx-2">
             {agGridList.map(d => 
-               <div key={d.key} className="col-auto mb-3">
+               <div key={"aggrid-list-"+d.key} className="col-auto mb-3">
                   <Form.Check 
                      type="radio" 
                      id={d.key}

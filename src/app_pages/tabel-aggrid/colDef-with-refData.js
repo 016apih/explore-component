@@ -67,7 +67,7 @@ class ColDefWithRefData extends React.PureComponent {
                </AgGridReact>
             </div>
             {Object.keys(statusMappings).map((d, id) => (
-               <li key={"mapS"+id}>Key: {d} | value: {statusMappings[d]}</li>
+               <li key={"map-s-"+id}>Key: {d} | value: {statusMappings[d]}</li>
             ))}
          </div>
       );

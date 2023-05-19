@@ -25,7 +25,7 @@ const NewPortfolio = memo(() => {
             <div className="border border-dark p-3 text-center">
                <h4>Ini halaman Portfolio</h4>
                { tabMenu.map(d => (
-                  <button className={`btn btn-sm border border-dark mx-2 ${bgActive(tab, d.id)}`}
+                  <button key={"btn-menu-port-"+d.id} className={`btn btn-sm border border-dark mx-2 ${bgActive(tab, d.id)}`}
                      onClick={() => setTab(d.id)}
                   >
                      {d.title}
@@ -39,7 +39,7 @@ const NewPortfolio = memo(() => {
          <div className="col-md-7">
             <div className="border border-dark px-2" style={{ height: '700px' }}>
                { tabPageMenu.map(d => (
-                  <button className={`btn btn-sm border border-dark ${bgActive(tabPage, d.id)}`}
+                  <button key={"btn-submenu-port-"+d.id} className={`btn btn-sm border border-dark ${bgActive(tabPage, d.id)}`}
                      onClick={() => setTabPage(d.id)}
                   >
                      {d.title}

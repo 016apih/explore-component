@@ -116,7 +116,7 @@ const RelativePerformance = memo((props) => {
                disabled={code1 === null || code2 === null}
             >
                { annotationList.map((d, id) => (
-                  <option key={"cht-anntion"+id} value={d.value}>
+                  <option key={"cht-anntion-rp-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
@@ -132,7 +132,7 @@ const RelativePerformance = memo((props) => {
                disabled={code1 === null || code2 === null}
             >
                { indicatorList.map((d, id) => (
-                  <option key={"cht-series-type"+id} value={d.value}>
+                  <option key={"cht-series-type-rp-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
@@ -147,7 +147,7 @@ const RelativePerformance = memo((props) => {
                disabled={code1 === null || code2 === null}
             >
                { chartThemeList.map((d, id) => (
-                  <option key={"cht2-theme"+id} value={d.value}>
+                  <option key={"cht2-theme-rp-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }

@@ -66,7 +66,7 @@ const ModalIndex = memo(( props ) => {
          <Modal.Body>
             <div className="row">
                { Object.keys(tempIndicator).map((d, id) => (d != "plotIndex" && d != "overview") && (
-                  <div key={"inpt-idc-" + id} className={setColClass(id)}>
+                  <div key={"inpt-idc-s-" + id} className={setColClass(id)}>
                      <div className="form-group" id="indicatorFormGroup">
                         <label htmlFor={d} className="control-label">
                            {getInputLabelText(d)}

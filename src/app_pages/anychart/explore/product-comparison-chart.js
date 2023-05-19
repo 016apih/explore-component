@@ -134,7 +134,7 @@ const ProductComparison = memo(() => {
                multiple={false}
             >
                { chartThemeList.map((d, id) => (
-                  <option key={"cht-theme"+id} value={d.value}>
+                  <option key={"cht-theme-pcp-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }

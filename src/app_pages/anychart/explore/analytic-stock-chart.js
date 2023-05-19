@@ -213,7 +213,7 @@ const AnalyticStockChart = memo(() => {
                multiple={false}
             >
                { chartThemeList.map((d, id) => (
-                  <option key={"cht2-theme"+id} value={d.value}>
+                  <option key={"cht2-theme-stc-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
@@ -226,7 +226,7 @@ const AnalyticStockChart = memo(() => {
                multiple={false}
             >
                { annotationList.map((d, id) => (
-                  <option key={"cht-anntion"+id} value={d.value}>
+                  <option key={"cht-anntion-stc-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
@@ -239,7 +239,7 @@ const AnalyticStockChart = memo(() => {
                multiple={false}
             >
                { seriesTypeList.map((d, id) => (
-                  <option key={"cht-series-type"+id} value={d.value}>
+                  <option key={"cht-series-type-stc-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
@@ -253,7 +253,7 @@ const AnalyticStockChart = memo(() => {
                multiple={false}
             >
                { indicatorList.map((d, id) => (
-                  <option key={"cht-series-type"+id} value={d.value}>
+                  <option key={"cht-series-type-stc-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
