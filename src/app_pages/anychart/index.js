@@ -11,6 +11,7 @@ import RelativePerformance from './explore/relative-performance/relative-perform
 
 import NewIndexChart from './explore/new-index-chart/new-index.js';
 import NewStockChart from './explore//new-stock-chart/new-stock.js';
+import NewPortfolio from './explore/new-portfolio-chart/new-portfolio.js';
 
 export { default as AnyChartPage } from './anychart-page.js';
 
@@ -29,5 +30,6 @@ export const anyChartList = [
    // untuk RFW
    {  key: "new-index-chart", name: "NewIndexChart", comp: NewIndexChart },
    {  key: "new-stock-chart", name: "NewStockChart", comp: NewStockChart },
+   {  key: "new-portfolio-chart", name: "NewPortfolioChart", comp: NewPortfolio },
 ]
 
