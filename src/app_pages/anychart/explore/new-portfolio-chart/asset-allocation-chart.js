@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import anychart from 'anychart';
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
@@ -10,10 +10,9 @@ const expData = [
    { x: "ESBN", value: 1186200},
    { x: "Cash", value: 6186200},
    { x: "Mutual Fund", value: 183200},
-   
 ];
 
-const NewPortfolioChart = memo(() => {
+const AssetAllocationChart = memo(() => {
 
    const onClickChart = (e) => {
       let index = e?.itemIndex || e?.point?.index;
@@ -81,4 +80,4 @@ const NewPortfolioChart = memo(() => {
    </>)
 })
 
-export default NewPortfolioChart;
+export default AssetAllocationChart;

@@ -1,6 +1,6 @@
 import React, { memo, useState} from 'react';
 
-import NewPortfolioChart from './new-portfolio-chart';
+import AssetAllocationChart from './asset-allocation-chart.js';
 
 const tabMenu = [
    { id: 1, key: "asset", title: "Asset Allocation" },
@@ -31,7 +31,7 @@ const NewPortfolio = memo(() => {
                   </button>
                )) }
                <div style={{ height: "300px" }}>
-                  <NewPortfolioChart />
+                  <AssetAllocationChart />
                </div>
             </div>
          </div>
