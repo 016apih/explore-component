@@ -20026,3 +20026,33 @@ export function get_stock_code(){
       value: d, type: "stock", code: d, name: `NAME - ${d}`, label: `Label - ${d}`
    }))
 }
+
+export function get_stocksmry (){
+   return {
+      "stock_code": "TEST DATA",
+      "board_code": "RG",
+      "individual_index": "0.0",
+      "available_for_frg": "8407608979.0",
+      "secboard_state": "0",
+      "prev_price": "370.0",
+      "high_price": "380.0",
+      "low_price": "366.0",
+      "close_price": "366.0",
+      "change_price": "-4.0",
+      "traded_val": "134254400.0",
+      "traded_vol": "362000",
+      "traded_freq": "108",
+      "open_price": "370.0",
+      "best_bid_price": "0.0",
+      "best_bid_vol": "0",
+      "best_offer_price": "0.0",
+      "best_offer_vol": "0",
+      "average_price": "0.0",
+      "change_price_pcts": "-1.08",
+      "foreign_buy_val": "0.0",
+      "foreign_buy_vol": "0",
+      "foreign_sell_val": "0.0",
+      "foreign_sell_vol": "0",
+      "average": "370.87"
+   }
+}

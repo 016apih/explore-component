@@ -178,3 +178,8 @@ body/*, html*/ {
    top: 15px;
    right: 25px; 
 }
+
+/* new style */
+.container-icon-chart {
+   border-radius: 4px;
+}
