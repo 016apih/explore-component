@@ -7,7 +7,16 @@ import { chartIcon, tradViewIcon, arrowInIcon } from '../../../../assets/icons';
 import NewStockChart from './new-stock-chart';
 import { get_stock_code, get_stock_chart } from '../../data';
 
-const NewStockInfo = memo(({ chartSeries, setChartSeries, rangeChart, setRangeChart }) => {
+const NewStockInfo = memo(({ chartSeries, chartRange, setChartSettings }) => {
+
+   const onChangeSeries = (chartSeries) => {
+      setChartSettings(s => ({ ...s, chartSeries }) )
+   }
+
+   const onChangeRange = (chartRange) => {
+      setChartSettings(s => ({ ...s, chartRange }) )
+   }
+
    return (<>
       <div className="row" style={{ padding: "10px 10px 0px 10px" }}>
          <div className="col-md-6">
@@ -15,23 +24,37 @@ const NewStockInfo = memo(({ chartSeries, setChartSeries, rangeChart, setRangeCh
                <thead></thead>
                <tbody>
                   <tr>
-                     <td className="">Open : <span className="text-danger">7081</span></td>
-                     <td className="px-3">High : <span className="text-success">7081</span></td>
-                     <td className="px-3">Chg : <span className="text-success">7081</span></td>
-                     <td className="px-3">Val : <span className="text-success">7081</span></td>
+                     <td className="">
+                        Open : <span className="text-danger">7081</span>
+                     </td>
+                     <td className="px-3">
+                        High : <span className="text-success">7081</span>
+                     </td>
+                     <td className="px-3">
+                        Chg : <span className="text-success">7081</span>
+                     </td>
+                     <td className="px-3">
+                        Val : <span className="text-success">7081</span>
+                     </td>
                   </tr>
                   <tr>
-                     <td className="">Lot : <span className="text-success">7081</span></td>
-                     <td className="px-3">Low : <span className="text-danger">7081</span></td>
-                     <td className="px-3">Prev : <span className="text-danger">7081</span></td>
-                     <td className="px-3">Freq : <span className="text-danger">7081</span></td>
+                     <td className="">
+                        Lot : <span className="text-success">7081</span>
+                     </td>
+                     <td className="px-3">
+                        Low : <span className="text-danger">7081</span>
+                     </td>
+                     <td className="px-3">
+                        Prev : <span className="text-danger">7081</span>
+                     </td>
+                     <td className="px-3">
+                        Freq : <span className="text-danger">7081</span>
+                     </td>
                   </tr>
                </tbody>
             </table>
          </div>
          <div className="col-md-4 align-self-center">
-            {/* <div id="rangeselectorContainer"></div> */}
-            <div id="rangepickerContainer"></div>
             <div className="row" clsa style={{ 
                border: "1px solid var(--bahana-gray)", 
                borderRadius: '4px', 
@@ -43,16 +66,17 @@ const NewStockInfo = memo(({ chartSeries, setChartSeries, rangeChart, setRangeCh
                      { key: "1d", title: '1d', type: "Unit", unit: "Day", count: 1 },
                      { key: "1w", title: '1w', type: "Unit", unit: "Day", count: 7 },
                      { key: "1m", title: '1m', type: "Unit", unit: "Month", count: 1 },
+                     { key: "3m", title: '3m', type: "Unit", unit: "Month", count: 3 },
                      { key: "1y", title: '1y', type: "Unit", unit: "year", count: 1 },
                      { key: "max", title: 'All', type: "Max", unit: "", count: 1 },
                   ].map(d => (
                      <div key={"rpc-anychart-" + d.key} 
-                        className="col-auto px-4 ms-auto container-icon-chart"
+                        className="col-auto px-3 ms-auto container-icon-chart"
                         style={{ 
-                           background: rangeChart.key === d.key ? "white" : "",
+                           background: chartRange.key === d.key ? "white" : "",
                            cursor: 'pointer'
                         }}
-                        onClick={() => setRangeChart(d)}
+                        onClick={() => d.key !== chartRange.key && onChangeRange(d)}
                      >{d.title}</div>
                   ))
                }
@@ -68,13 +92,13 @@ const NewStockInfo = memo(({ chartSeries, setChartSeries, rangeChart, setRangeCh
             }}>
                <div className={`d-inline mr-2 ${chartSeries === "splineArea" && "bg-white"}`} 
                   style={{ padding: '2px 4px', borderRadius: '4px', cursor: "pointer"}}
-                  onClick={() => setChartSeries("splineArea")}
+                  onClick={() => onChangeSeries("splineArea")}
                >
                   {chartIcon('var(--netral-grey)')}
                </div>
                <div className={`d-inline ${chartSeries === "candlestick" && "bg-white"}`} 
                   style={{ padding: '2px', borderRadius: '4px', cursor: "pointer"}}
-                  onClick={() => setChartSeries("candlestick")}
+                  onClick={() => onChangeSeries("candlestick")}
                >
                   <CandlestickChartIcon color='info' />
                </div>
@@ -100,16 +124,23 @@ const NewStockInfo = memo(({ chartSeries, setChartSeries, rangeChart, setRangeCh
    </>)
 });
 
+const defSettings = {
+   chartSeries: "splineArea", // "candlestick"
+   chartRange: { key: "max",type: "Max" }
+}
+
 const NewStock = memo(() => {
    const [codeList, setCodeList] = useState(get_stock_code());
    const [code, setCode] = useState(null);
    const [chartData, setChartData] = useState([]);
-   const [chartSeries, setChartSeries] = useState('splineArea'); // "candlestick",
-   const [rangeChart, setRangeChart] = useState({key: "max",type: "Max"});
+   const [chartSettings, setChartSettings] = useState(defSettings);
 
    const onSelectCode = (e) => {
       setCode(e);
       setChartData(get_stock_chart(e.value));
+      setChartSettings(s => ({
+         ...s, chartRange: defSettings.chartRange
+      }))
    } 
 
    return (<>
@@ -123,14 +154,13 @@ const NewStock = memo(() => {
          </div>
          <div style={{ border: "1px solid red", borderRadius: "10px" }}>
             <NewStockInfo 
-               chartSeries={chartSeries} setChartSeries={setChartSeries} 
-               rangeChart={rangeChart} setRangeChart={setRangeChart}
+               { ...chartSettings }
+               setChartSettings={setChartSettings}
             />
             <NewStockChart 
                chartData={chartData}
                chartCode={code}
-               chartSeries={chartSeries}
-               rangeChart={rangeChart}
+               { ...chartSettings }
             />
          </div>
       </div>

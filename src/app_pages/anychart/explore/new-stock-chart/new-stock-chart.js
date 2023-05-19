@@ -3,7 +3,7 @@ import anychart from 'anychart';
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
 import { setRupiah } from '../../../generalFunction';
 
-const NewStockChart = memo(({ chartSeries, chartCode, chartData, rangeChart }) => {
+const NewStockChart = memo(({ chartSeries, chartCode, chartData, chartRange }) => {
    
    const chart = anychart.stock(); // create instance stock chart
    chart.padding(10, 50, 20, 10);
@@ -52,11 +52,12 @@ const NewStockChart = memo(({ chartSeries, chartCode, chartData, rangeChart }) =
    chart.scroller().enabled(false);
 
    useEffect(() => {
-      if(rangeChart.type === "Unit"){
-         let { unit, count } = rangeChart;
+      if(chartRange.type === "Unit"){
+         let { unit, count } = chartRange;
          chart.selectRange(unit, count, 'first-date', true);
+         chart.draw()
       }
-   }, [ rangeChart ])
+   }, [ chartRange ])
 
    return (
       <AnyChart 
