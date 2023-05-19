@@ -7,6 +7,13 @@ import { chartIcon, tradViewIcon, arrowInIcon } from '../../../../assets/icons';
 import NewStockChart from './new-stock-chart';
 import { get_stock_code, get_stock_chart } from '../../data';
 
+/**
+ * Bisa di pake untuk
+ * 1. New stock chart
+ * 2. new Index chart
+ * 
+ */
+
 const NewStockInfo = memo(({ chartSeries, chartRange, setChartSettings }) => {
 
    const onChangeSeries = (chartSeries) => {
