@@ -76,7 +76,6 @@ const ProfitAndLost = memo(() => {
                            </div>
                            <div className="col-sm-12 mt-4">
                               <ProfitAndLossChart />
-                              { tab === 1 ? "aaaa" : ""}
                            </div>
                         </div>
                      </div>
