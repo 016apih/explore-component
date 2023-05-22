@@ -17,14 +17,6 @@ const NetworkVars = {
    errMsg: "",
 }
 
-const NetworkAction = {
-   setVar: "setVar",
-   setVars: "setVars",
-   setEventVars: "setVars",
-   mappingResp: "mappingResp",
-   LOGIN_SUCCESS: "LOGIN_SUCCESS",
-   LOGIN_FAILED: "LOGIN_FAILED",   
-}
 const NetworkReducer = (state, action) => {
    if(action.type === "setVar"){
       return { ...state, [action.key]: action.value }
@@ -130,25 +122,6 @@ export const WebsocketConnection = memo(({ socketId="" }) => {
    const setDataHandler = (msg) => {
       // console.log(`rendered ${socketId}`, vars)
       setStates({ type: `mappingResp${socketId}`, respMsg: msg });
-      // let { action_type, sub_type, status, data, session_id } = msg;
-      // if(socketId === ""){
-      //    if(action_type === "LOGIN-RESPONSE"){
-      //       if(status === "OK"){
-      //          setStates({type: "setVars", newState: { ...msg } });
-      //          vars.netActionAux.sendJsonMessage({ user: vars.user, session_id, stringify: "true" })
-      //       } else {
-      //          setStates({type: "LOGIN_FAILED", payload: { errMsg: msg.reason } });
-      //       }
-      //    }
-      // } else {
-      //    if(action_type === "DF-RESPONSE"){
-      //       if(status === "OK"){
-      //          setStates({type: "LOGIN_SUCCESS"});
-      //       } else {
-      //          setStates({type: "LOGIN_FAILED", payload: { errMsg: msg.reason }});
-      //       }
-      //    }
-      // }
    }
 
    const ws = useWebSocket(getURL[socketId], {
@@ -166,6 +139,7 @@ export const WebsocketConnection = memo(({ socketId="" }) => {
             value: ws
          })
       }
+      ws.readyState === 3 && window.location.reload();
    }, [ws.readyState])
 
    return (<>
