@@ -5,7 +5,7 @@ import { reactUseWebsocketList } from './index.js';
 
 const ReactUseWebsocketPage = memo(() => {
 
-   const [ tableActive, setTableActive ] = useState(reactUseWebsocketList[1]);
+   const [ tableActive, setTableActive ] = useState(reactUseWebsocketList[2]);
 
    const componetActive = (Component) => {
       if(!(Component))
