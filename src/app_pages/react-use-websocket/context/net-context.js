@@ -3,6 +3,7 @@ import { memo, useEffect, useContext, createContext, useReducer, forwardRef, use
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import { url, url2 } from "../../../gitignore";
+import { useCallback } from "react";
 
 const getURL = { "": url, "Aux": url2 };
 
@@ -131,6 +132,7 @@ export const WebsocketConnection = memo(({ socketId="" }) => {
    });
 
    useEffect(() => {
+      // setNetAction()
       console.log(ws.readyState)
       if(ws.readyState === 1){
          setStates({ 
@@ -147,4 +149,30 @@ export const WebsocketConnection = memo(({ socketId="" }) => {
          status Websocket {socketId} : {vars[`isConnection${socketId}`]}
       </h5>
    </>)
+})
+
+export const WebsocketAction = forwardRef((props, ref) => {
+
+   const { netAction, netActionAux, setStates, isErr, errMsg, isLoading  } = useNetwork();
+   
+   const { socketId } = props;
+
+   
+   useImperativeHandle(ref, () => {
+      if(socketId){
+         return {
+            sendActAux(msg){
+               return netActionAux.sendJsonMessage(msg)
+            }
+         }
+      } else {
+         return {
+            sendAct(msg) {
+               return netAction.sendJsonMessage(msg)
+            }
+         }
+      }
+   }, [])
+   
+   return (<></>)
 })

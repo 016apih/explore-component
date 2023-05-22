@@ -13,7 +13,6 @@ const Exp1LoginPage = memo(() => {
       netAction.sendJsonMessage({ action_type: 'LOGIN', user, password: pwd, terminal: "web" })
    }
 
-
    return (<>
       <h3>LoginPage</h3>
       {isErr ? (
