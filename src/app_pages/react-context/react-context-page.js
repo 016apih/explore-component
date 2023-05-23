@@ -1,11 +1,11 @@
 import React, { memo, useState, Suspense } from 'react';
 
-import { reactContextList } from './index.js';
+import { reactContextList, defTabActive } from './index.js';
 import { FormChecked } from '../../app_components';
 
 const ReactContextPage = memo(() => {
 
-   const [ tableActive, setTableActive ] = useState(reactContextList[0]);
+   const [ tableActive, setTableActive ] = useState(defTabActive);
 
    const componetActive = (Component) => {
       if(!(Component))
@@ -19,6 +19,7 @@ const ReactContextPage = memo(() => {
          <div className="row mx-2" /*style={{ display: "none" }}*/>
             {reactContextList.map(d => (
                <FormChecked 
+                  key={"react-context-list-menu-" + d.key}
                   opt={d}
                   selected={tableActive} 
                   onChange={setTableActive} 

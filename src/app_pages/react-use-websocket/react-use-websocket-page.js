@@ -19,6 +19,7 @@ const ReactUseWebsocketPage = memo(() => {
          <div className="row mx-2" /*style={{ display: "none" }}*/>
             {reactUseWebsocketList.map(d => 
                <FormChecked 
+                  key={"react-use-websocket-list-menu-" + d.key}
                   opt={d}
                   selected={tableActive} 
                   onChange={setTableActive} 

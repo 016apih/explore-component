@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { Form } from 'react-bootstrap';
 
-const Index = memo(({ opt, selected, onChange }) => {
+const Index = memo(({ key, opt, selected, onChange }) => {
    return (
-      <div key={"anychart-list-menu-" + opt.key} className="col-auto mb-3">
+      <div key={key} className="col-auto mb-3">
          <Form.Check 
             type="radio" 
             id={opt.key}
