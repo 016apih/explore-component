@@ -1,12 +1,9 @@
 import React, { useRef, useCallback, useContext, useState, useEffect } from "react";
 
-export default function createFastContext(){
+export default function createFastContext(initialState){
    // create initial Context
    function useStoreData(){
-      const store = useRef({
-         first: "", 
-         last: ""
-      });
+      const store = useRef(initialState);
    
       const get = useCallback(() => store.current, []);
    
