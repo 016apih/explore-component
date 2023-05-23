@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './sidebar.css';
 
 const Exp1Sidebar = () => {
    return (
-      <aside>
+      <aside className="mx-0 px-0">
          <div>Exp1Sidebar</div>
       </aside>
    )

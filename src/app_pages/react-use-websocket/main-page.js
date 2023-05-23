@@ -14,9 +14,11 @@ const ReactUseWebsocketPage = memo(() => {
       return <Component />
    }
 
+   const display = tableActive === 3 ? "none" : "block";
+
    return (
       <Suspense fallback={<div>Loading...</div>}>
-         <div className="row mx-2">
+         <div className="row mx-2" /*style={{ display: "none" }}*/>
             {reactUseWebsocketList.map(d => 
                <div key={"anychart-list-menu-"+d.key} className="col-auto mb-3">
                   <Form.Check 
@@ -29,7 +31,7 @@ const ReactUseWebsocketPage = memo(() => {
                </div>
             )}
          </div>
-         <div className="row mx-2">
+         <div className="row mx-0">
             { componetActive(tableActive.comp) }
          </div>
       </Suspense>

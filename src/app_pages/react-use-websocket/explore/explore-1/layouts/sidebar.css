@@ -1,0 +1,7 @@
+aside {
+   width: var(--width-sidebar);
+   border: 1px solid saddlebrown;
+   left: 0px;
+   height: calc(100vh - var(--height-header) - var(--height-footer));
+   float: left;
+}

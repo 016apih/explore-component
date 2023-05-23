@@ -1,0 +1,8 @@
+footer {
+   height: var(--height-footer);
+   border: 1px solid green;
+   bottom: 0px;
+   left: 0px;
+   position: fixed;
+   width: 100%;
+}

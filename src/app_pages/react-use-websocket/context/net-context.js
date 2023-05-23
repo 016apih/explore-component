@@ -145,9 +145,9 @@ export const WebsocketConnection = memo(({ socketId="" }) => {
    }, [ws.readyState])
 
    return (<>
-      <h5 className="alert alert-warning col-auto">
+      <h6 className="alert alert-warning col-auto">
          status Websocket {socketId} : {vars[`isConnection${socketId}`]}
-      </h5>
+      </h6>
    </>)
 })
 

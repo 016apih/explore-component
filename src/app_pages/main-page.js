@@ -25,7 +25,7 @@ const MainPage = memo(() => {
    }
 
    return (<>
-      <div className="w-50 m-3">
+      <div className="w-50 m-3" /*style={{  display: "none" }}*/>
          <SelectComponent
             options={options}
             onChange={setPageActive}
