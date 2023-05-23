@@ -1,11 +1,11 @@
 import React, { memo, useState, Suspense } from 'react';
 import { Form } from 'react-bootstrap';
 
-import { reactUseWebsocketList } from './index.js';
+import { reactUseWebsocketList, defTableActive } from './index.js';
 
 const ReactUseWebsocketPage = memo(() => {
 
-   const [ tableActive, setTableActive ] = useState(reactUseWebsocketList[3]);
+   const [ tableActive, setTableActive ] = useState(defTableActive);
 
    const componetActive = (Component) => {
       if(!(Component))
@@ -13,8 +13,6 @@ const ReactUseWebsocketPage = memo(() => {
 
       return <Component />
    }
-
-   const display = tableActive === 3 ? "none" : "block";
 
    return (
       <Suspense fallback={<div>Loading...</div>}>
@@ -25,7 +23,7 @@ const ReactUseWebsocketPage = memo(() => {
                      type="radio" 
                      id={d.key}
                      label={d.name}
-                     checked={tableActive.key === d.key}
+                     checked={tableActive?.key === d.key}
                      onChange={(e) => setTableActive(d)}
                   />
                </div>
