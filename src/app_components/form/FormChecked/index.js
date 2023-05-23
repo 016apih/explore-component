@@ -8,7 +8,7 @@ const Index = memo(({ key, opt, selected, onChange }) => {
             type="radio" 
             id={opt.key}
             label={opt.name}
-            checked={selected.value === opt.key}
+            checked={selected.key === opt.key}
             onChange={(e) => onChange(opt)}
          />
       </div>
