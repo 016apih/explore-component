@@ -38,14 +38,14 @@ const MainPage = memo(() => {
             />
          </div>
          <div className="col-md-3">
-            <div class="form-check form-switch">
+            <div className="form-check form-switch">
                <input 
-                  class="form-check-input" type="checkbox" role="switch" 
+                  className="form-check-input" type="checkbox" role="switch" 
                   id="flexSwitchCheckChecked" 
                   checked={theme === "dark"}
                   onChange={setThemeMode}
                />
-               <label class="form-check-label" for="flexSwitchCheckChecked">
+               <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
                   {theme === "dark" ? "Dark" : "White"} Mode
                </label>
             </div>

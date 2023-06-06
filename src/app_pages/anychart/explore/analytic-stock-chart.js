@@ -253,7 +253,7 @@ const AnalyticStockChart = memo(() => {
                multiple={false}
             >
                { indicatorList.map((d, id) => (
-                  <option key={"cht-series-type-stc-"+id} value={d.value}>
+                  <option key={"cht-indicator-type-stc-"+id} value={d.value}>
                      {d.label}
                   </option>
                )) }
