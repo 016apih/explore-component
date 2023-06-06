@@ -24,5 +24,4 @@ export const agGridList = [
       name: "ColDefWithRefData", 
       label: "Checkbox 1" 
    },
-   
 ]

@@ -1,0 +1,24 @@
+.row-header {
+   height: var(--height-header);
+   border: solid 1px red;
+   padding: 0px!important;
+}
+.main-header {
+   width: calc(100% - 180px);
+}
+
+.col-header {
+   border: solid 1px blue;
+   width: 90px;
+   align-self: center;
+   justify-content: center;
+}
+
+.sub-header-1 {
+   height: 62px;
+   border: 1px solid var(--netral-grey-ash);
+}
+.sub-header-2 {
+   height: var(--height-subheader-1);
+   border: 1px solid var(--netral-grey-ash);
+}

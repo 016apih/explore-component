@@ -1,31 +1,58 @@
 import React, { memo, useState } from 'react';
 
-import { FormCard1 } from './form-page';
-import { AgGridPage } from './tabel-aggrid';
-
+import { options, defaultOption } from './index.js';
 import { SelectComponent } from '../app_components';
-
-const options = [
-   { key: "form", value: 'form', label: 'Form' },
-   { key: "agGrid", value: 'agGrid', label: 'Tabel Ag Grid' },
-   // { key: "", value: 'vanilla', label: 'Vanilla' },
-];
+import { useEffect } from 'react';
 
 const MainPage = memo(() => {
-   const [ pageActive, setPageActive ] = useState(options[1]);
+   const [ pageActive, setPageActive ] = useState(defaultOption);
+   const [theme, setTheme] = useState("light");
+
+   const componentActive = ( Component ) => {
+      if(!Component){
+         return <h5>jangan lupa import Componentnya</h5>
+      }
+      return <Component />
+   }
+
+   const setThemeMode = () => {
+      let newTheme = theme === "dark" ? "light" : "dark";
+      localStorage.setItem("themeMode", newTheme)
+      document.querySelector("body").setAttribute("data-theme", newTheme);
+      setTheme(newTheme);
+   }
+
+   useEffect(() => {
+      let lastTheme = localStorage.getItem("themeMode");
+      document.querySelector("body").setAttribute("data-theme", lastTheme);
+      setTheme(lastTheme);
+   }, [])
+
    return (<>
-      <div className="w-50 m-3">
-         <SelectComponent
-            options={options}
-            onChange={setPageActive}
-            value={pageActive}
-         />
+      <div className="row m-3" /*style={{  display: "none" }}*/>
+         <div className="col-md-4">
+            <SelectComponent
+               options={options}
+               onChange={setPageActive}
+               value={pageActive}
+            />
+         </div>
+         <div className="col-md-3">
+            <div className="form-check form-switch">
+               <input 
+                  className="form-check-input" type="checkbox" role="switch" 
+                  id="flexSwitchCheckChecked" 
+                  checked={theme === "dark"}
+                  onChange={setThemeMode}
+               />
+               <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
+                  {theme === "dark" ? "Dark" : "White"} Mode
+               </label>
+            </div>
+         </div>
       </div>
-      {pageActive?.value === "form" ?
-            <FormCard1 />
-         : pageActive?.value === "agGrid" ?
-            <AgGridPage />
-         : ""
+      {
+         componentActive(pageActive.comps)
       }
    </>)
 });

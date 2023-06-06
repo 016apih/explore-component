@@ -1,0 +1,51 @@
+main {
+   /* border: solid 1px firebrick; */
+   float: right;
+   width: calc(100% - var(--width-sidebar));
+   padding: 10px;
+   height: calc(100vh - var(--height-header) - var(--height-footer));
+   margin: 0px;
+}
+
+.main-page {
+   background: cornsilk;
+   height: 100%;
+   border-radius: 10px;
+}
+
+@media (max-width: 1024px){
+}
+@media (min-width: 1225px) and (max-width: 1409px) {
+}
+@media(min-width: 1410px) and (max-width: 1600px){
+}
+@media (min-width: 1601px) and (max-width: 1700px) {
+}
+@media (min-width: 1701px) and (max-width: 1800px) {
+}
+@media (min-width: 1801px) and (max-width: 1900px){
+}
+@media (min-width: 1901px){
+}
+
+/* List k2 */
+@media(min-width: 1279px) and (max-width: 1359px){
+}
+@media(min-width: 1360px) and (max-width: 1440px) {
+}
+@media(min-width: 1441px) and (max-width: 1679px) {
+}
+@media(min-width: 1680px) and (max-width: 1919px){
+}
+@media(min-width: 1920px) and (max-width:  2047px){
+}
+@media(min-width: 2048px) and (max-width:  2303px){
+}
+@media(min-width: 2304px) and (max-width:  2559px){
+}
+@media(min-width: 2560px) and (max-width: 2900px){
+}
+
+/*  */
+@media (min-width: 1365px) AND (max-width: 1370px){
+}

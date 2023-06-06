@@ -1,3 +1,58 @@
+:root{
+  --body-background: white;
+  --body-color: black;
+  --link-color: navy;
+
+  --primary-sky: #2B9CD1;
+  --primary-green: #9AC044;
+  --secondary-sky: #F40303;
+  --secondary-success: #44C05F;
+  --secondary-yellow: #D99F2E;
+  --netral-black: #14181D;
+  --netral-grey: #6F787C;
+  --netral-grey-ash: #CFD6DA;
+  --bahana-gray: #F3F3F3;
+
+  --height-header: 98px;
+  --height-subheader-1: 36px;
+  --height-footer: 37px;
+  --width-sidebar: 130px
+}
+
+.for-light-theme {
+  --primary-color: #302ae6;
+  --secondary-color: #536390;
+  --font-color:#424242;
+  --bg-color:#fff;
+  --heading-color: #292922;
+}
+
+.for-dark-theme {
+  --primary-color: #9a97f3;
+  --secondary-color: #818cab;
+  --font-color:#e1e1ff;
+  --bg-color:#161625;
+  --heading-color: #818cab;
+}
+
+[data-theme="dark"]{
+  --body-background: #282c34;
+  --body-color: white;
+  --link-color: cyan;
+}
+
+* {
+  transition: all 0.03s ease-in-out;
+}
+
+.main-app {
+  background-color: var(--body-background);
+  min-height: 100vh;
+  color: var(--body-color);
+  font-size: calc(10px + 0.5vmin);
+
+}
+
 .App {
   text-align: center;
 }
