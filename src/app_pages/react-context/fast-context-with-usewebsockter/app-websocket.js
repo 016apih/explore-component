@@ -3,9 +3,7 @@ import React, { memo, useContext, useEffect, forwardRef, useImperativeHandle } f
 import useWebSocket from 'react-use-websocket';
 import { StoreContext } from './app-fast-context';
 
-import { url, url2 } from '../../../gitignore';
-
-const getURL = { "": url, "Aux": url2 };
+const getURL = { "": process.env.URL, "Aux": process.env.URL2 };
 
 export const WebsocketConnection = memo(({ socketId="" }) => {
    const { onOpenHandler, onCloseHandler, onMessageHandler} = useContext(StoreContext)

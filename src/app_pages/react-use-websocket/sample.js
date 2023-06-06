@@ -3,10 +3,9 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import LoginPage from './components/login';
 import MainPage from './components/main-page.js';
-import { url, url2 } from '../../gitignore';
 
-const nurl = url || "wss://echo.websocket.events";
-const nurl2 = url2 || "wss://echo.websocket.events";
+const nurl = process.env.URL || "wss://echo.websocket.events";
+const nurl2 = process.env.URL2 || "wss://echo.websocket.events";
 
 const WebSocketDemo = memo(() => {
    const [isLogin, setIslogin] = useState(false);

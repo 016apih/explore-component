@@ -1,7 +1,6 @@
 import { useEffect, createContext, useContext, useState } from "react";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-import { url, url2 } from '../../../gitignore';
 import { useReducer } from "react";
 
 //create context & use hooks custom
@@ -55,8 +54,8 @@ const VarsReducer = (state, action) => {
 const WebSocketProvider = ({ children }) => {
    const [vars, setVars] = useReducer(VarsReducer, IntVars);
 
-   const ws1 = useWebSocket(url);
-   const ws2 = useWebSocket(url2);
+   const ws1 = useWebSocket(process.env.URL);
+   const ws2 = useWebSocket(process.env.URL2);
 
    const wsStatus1 = {
       [ReadyState.CONNECTING]: 'Connecting',

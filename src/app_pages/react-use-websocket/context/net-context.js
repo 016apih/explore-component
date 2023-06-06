@@ -1,11 +1,9 @@
 import { memo, useEffect, useContext, createContext, useReducer, forwardRef, useImperativeHandle } from "react";
 
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 
-import { url, url2 } from "../../../gitignore";
-import { useCallback } from "react";
+const getURL = { "": process.env.URL, "Aux": process.env.URL2 };
 
-const getURL = { "": url, "Aux": url2 };
 
 export const NetworkContext = createContext();
 
