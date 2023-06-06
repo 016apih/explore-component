@@ -15,4 +15,4 @@ export const options = [
    { id: 4, key: "exp-react-context", value: 'ReactContextPage', code: "code", name: "name", label: 'ReactContextPage', comps: ReactContextPage },
 ];
 
-export const defaultOption = options[4];
+export const defaultOption = options[2];
