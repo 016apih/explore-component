@@ -1,6 +1,6 @@
 import React, { memo, useState} from 'react';
 
-import AssetAllocationChart from './asset-allocation-chart.js';
+import AssetAllocationChart from './asset-allocation/asset-allocation-chart.js';
 import ProfitAndLost from './profit&loss/profit-loss.js';
 
 const tabMenu = [

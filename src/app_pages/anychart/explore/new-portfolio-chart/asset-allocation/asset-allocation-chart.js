@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import anychart from 'anychart';
 
 import AnyChart from '/node_modules/anychart-react/dist/anychart-react.min';
-import { memo } from 'react';
-import { setRupiah } from '../../../generalFunction';
+import { setRupiah } from '../../../../generalFunction';
 
 const expData = [
    { x: "Stock", value: 11186200},
@@ -37,7 +36,7 @@ const AssetAllocationChart = memo(() => {
       .height('100%')
       .adjustFontSize(true, true)
       .minFontSize(10)
-      .maxFontSize(25)
+      .maxFontSize(15)
       .fontColor('#60727b')
       .position('center')
       .anchor('center')
